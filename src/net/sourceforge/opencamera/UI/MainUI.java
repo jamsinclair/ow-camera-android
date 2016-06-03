@@ -569,6 +569,11 @@ public class MainUI {
 			    View exposureLockButton = (View) main_activity.findViewById(R.id.exposure_lock);
 			    View audioControlButton = (View) main_activity.findViewById(R.id.audio_control);
 			    View popupButton = (View) main_activity.findViewById(R.id.popup);
+			    // Pebble Changes Start
+			    View pebbleWatchButton = (View) main_activity.findViewById(R.id.pebble_watch);
+			    if (main_activity.showPebbleWatchButton())
+			    	pebbleWatchButton.setVisibility(visibility);
+			    // Pebble Changes End
 			    if( main_activity.getPreview().getCameraControllerManager().getNumberOfCameras() > 1 )
 			    	switchCameraButton.setVisibility(visibility);
 			    if( !main_activity.getPreview().isVideo() )

@@ -226,15 +226,21 @@ public class MainActivity extends Activity implements AudioListener.AudioListene
 			Log.d(TAG, "onCreate: time after creating magnetic sensor: " + (System.currentTimeMillis() - debug_time));
 
 		mainUI.clearSeekBar();
-		
+
         preview = new Preview(applicationInterface, savedInstanceState, ((ViewGroup) this.findViewById(R.id.preview)));
 		if( MyDebug.LOG )
 			Log.d(TAG, "onCreate: time after creating preview: " + (System.currentTimeMillis() - debug_time));
-		
+
 	    View switchCameraButton = (View) findViewById(R.id.switch_camera);
 	    switchCameraButton.setVisibility(preview.getCameraControllerManager().getNumberOfCameras() > 1 ? View.VISIBLE : View.GONE);
 	    View speechRecognizerButton = (View) findViewById(R.id.audio_control);
 	    speechRecognizerButton.setVisibility(View.GONE); // disabled by default, until the speech recognizer is created
+
+	    // Pebble Changes Start
+	    View pebbleWatchButton = (View) findViewById(R.id.pebble_watch);
+	    pebbleWatchButton.setVisibility(this.showPebbleWatchButton() ? View.VISIBLE : View.GONE);
+	    // Pebble Changes End
+
 		if( MyDebug.LOG )
 			Log.d(TAG, "onCreate: time after setting button visibility: " + (System.currentTimeMillis() - debug_time));
 
@@ -734,13 +740,19 @@ public class MainActivity extends Activity implements AudioListener.AudioListene
 
 		updateGalleryIcon(); // update in case images deleted whilst idle
 
+		// Pebble Changes Start
+		View pebbleWatchButton = (View) findViewById(R.id.pebble_watch);
+	    pebbleWatchButton.setVisibility(this.showPebbleWatchButton() ? View.VISIBLE : View.GONE);
+	    pebble.onResume(this);
+	    // Pebble Changes End
+
 		preview.onResume();
 
 		if( MyDebug.LOG ) {
 			Log.d(TAG, "onResume: total time to resume: " + (System.currentTimeMillis() - debug_time));
 		}
     }
-	
+
 	@Override
 	public void onWindowFocusChanged(boolean hasFocus) {
 		if( MyDebug.LOG )
