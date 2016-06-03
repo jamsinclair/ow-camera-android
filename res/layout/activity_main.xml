@@ -138,7 +138,18 @@
         android:src="@drawable/switch_camera"
         android:onClick="clickedSwitchCamera"
         />
-
+	
+    <ImageButton
+        android:id="@+id/pebble_watch"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:padding="10dp"
+        android:scaleType="fitCenter"
+        android:contentDescription="@string/pebble_watch"
+        android:src="@drawable/pebble_watch"
+        android:onClick="clickedPebbleWatch"
+        />
+        
     <ImageButton
         android:id="@+id/audio_control"
         android:layout_width="50dp"
