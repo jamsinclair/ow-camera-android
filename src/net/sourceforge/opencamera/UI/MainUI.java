@@ -178,7 +178,20 @@ public class MainUI {
 			layoutParams.addRule(right_of, 0);
 			view.setLayoutParams(layoutParams);
 			view.setRotation(ui_rotation);
-	
+
+			// Pebble Changes Start
+			view = main_activity.findViewById(R.id.pebble_watch);
+			layoutParams = (RelativeLayout.LayoutParams)view.getLayoutParams();
+			layoutParams.addRule(align_parent_left, 0);
+			layoutParams.addRule(align_parent_right, 0);
+			layoutParams.addRule(align_parent_top, RelativeLayout.TRUE);
+			layoutParams.addRule(align_parent_bottom, 0);
+			layoutParams.addRule(left_of, R.id.switch_camera);
+			layoutParams.addRule(right_of, 0);
+			view.setLayoutParams(layoutParams);
+			view.setRotation(ui_rotation);
+			// Pebble Changes End
+
 			view = main_activity.findViewById(R.id.audio_control);
 			layoutParams = (RelativeLayout.LayoutParams)view.getLayoutParams();
 			layoutParams.addRule(align_parent_left, 0);
@@ -493,6 +506,12 @@ public class MainUI {
 			    View settingsButton = (View) main_activity.findViewById(R.id.settings);
 			    View zoomControls = (View) main_activity.findViewById(R.id.zoom);
 			    View zoomSeekBar = (View) main_activity.findViewById(R.id.zoom_seekbar);
+			    // Pebble Changes Start
+			    View pebbleWatchButton = (View) main_activity.findViewById(R.id.pebble_watch);
+			    if (main_activity.showPebbleWatchButton())
+			    	pebbleWatchButton.setVisibility(visibility);
+			    // Pebble Changes End
+
 			    if( main_activity.getPreview().getCameraControllerManager().getNumberOfCameras() > 1 )
 			    	switchCameraButton.setVisibility(visibility);
 		    	switchVideoButton.setVisibility(visibility);

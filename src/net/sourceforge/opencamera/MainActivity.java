@@ -5,6 +5,7 @@ import net.sourceforge.opencamera.CameraController.CameraControllerManager2;
 import net.sourceforge.opencamera.Preview.Preview;
 import net.sourceforge.opencamera.UI.FolderChooserDialog;
 import net.sourceforge.opencamera.UI.MainUI;
+import net.sourceforge.opencamera.PebbleHelper.PebbleHelper;
 
 import java.io.File;
 import java.io.IOException;
@@ -111,7 +112,10 @@ public class MainActivity extends Activity implements AudioListener.AudioListene
 	private ToastBoxer exposure_lock_toast = new ToastBoxer();
 	private ToastBoxer audio_control_toast = new ToastBoxer();
 	private boolean block_startup_toast = false;
-    
+
+	// for pebble:
+	private PebbleHelper pebble = new PebbleHelper();
+
 	// for testing:
 	public boolean is_test = false;
 	public Bitmap gallery_bitmap = null;
@@ -874,6 +878,22 @@ public class MainActivity extends Activity implements AudioListener.AudioListene
 			mainUI.setSwitchCameraContentDescription();
 		}
     }
+
+    // Pebble Changes Start
+    public void clickedPebbleWatch(View view) {
+		if( MyDebug.LOG )
+			Log.d(TAG, "clickedPebbleWatch");
+		this.closePopup();
+	    View pebbleWatchButton = (View) findViewById(R.id.pebble_watch);
+	    pebbleWatchButton.setEnabled(false); // prevent slowdown if user repeatedly clicks
+	    pebble.onClickPebbleWatchButton(this);
+		pebbleWatchButton.setEnabled(true);
+    }
+
+    public boolean showPebbleWatchButton() {
+    	return pebble.isConnected(this);
+    }
+    // Pebble Changes End
 
     public void clickedSwitchVideo(View view) {
 		if( MyDebug.LOG )
