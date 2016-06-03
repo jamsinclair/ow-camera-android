@@ -783,6 +783,9 @@ public class MainActivity extends Activity implements AudioListener.AudioListene
         applicationInterface.getLocationSupplier().freeLocationListeners();
 		releaseSound();
 		preview.onPause();
+		// Pebble Changes Start
+		pebble.onPause(this);
+		// Pebble Changes End
 		if( MyDebug.LOG ) {
 			Log.d(TAG, "onPause: total time to pause: " + (System.currentTimeMillis() - debug_time));
 		}
@@ -1329,13 +1332,22 @@ public class MainActivity extends Activity implements AudioListener.AudioListene
 		{
 	        WindowManager.LayoutParams layout = getWindow().getAttributes();
 	        layout.screenBrightness = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE;
-	        getWindow().setAttributes(layout); 
+	        getWindow().setAttributes(layout);
 		}
 
 		setImmersiveMode(false);
 		camera_in_background = true;
     }
-    
+
+    // Pebble Changes Start
+    private void setTimerPreference(int delay) {
+		SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
+		SharedPreferences.Editor editor = settings.edit();
+		editor.putString(PreferenceKeys.getTimerPreferenceKey(), Integer.toString(delay));
+		editor.apply();
+	}
+    // Pebble Changes End
+
     private void showPreview(boolean show) {
 		if( MyDebug.LOG )
 			Log.d(TAG, "showPreview: " + show);
@@ -1776,7 +1788,17 @@ public class MainActivity extends Activity implements AudioListener.AudioListene
 		closePopup();
     	this.preview.takePicturePressed();
     }
-    
+
+    // Pebble Changes Start
+    public void takePictureFromRemote(int timer_delay) {
+		if( MyDebug.LOG )
+			Log.d(TAG, "takePictureFromRemote");
+		closePopup();
+		this.setTimerPreference(timer_delay);
+		this.preview.takePicturePressed();
+    }
+    // Pebble Changes End
+
     void lockScreen() {
 		((ViewGroup) findViewById(R.id.locker)).setOnTouchListener(new View.OnTouchListener() {
             @SuppressLint("ClickableViewAccessibility") @Override
