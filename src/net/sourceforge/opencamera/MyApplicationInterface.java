@@ -1266,10 +1266,16 @@ public class MyApplicationInterface implements ApplicationInterface {
 				preference_stamp, preference_textstamp, font_size, color, pref_style, preference_stamp_dateformat, preference_stamp_timeformat, preference_stamp_gpsformat,
 				store_location, location, store_geo_direction, geo_direction,
 				has_thumbnail_animation);
-		
+
 		if( MyDebug.LOG )
 			Log.d(TAG, "onPictureTaken complete");
-		
+
+		// Pebble Changes Start
+		// Check to see if picture capture was in progress from pebble, call handler function
+		if(main_activity.pebble_picture_state == MainActivity.pebble_picture_in_progress)
+			main_activity.pebbleOnPictureTaken();
+		// Pebble Changes End
+
 		return success;
 	}
 
