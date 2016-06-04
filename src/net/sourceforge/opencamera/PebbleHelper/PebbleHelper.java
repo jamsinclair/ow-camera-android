@@ -36,6 +36,7 @@ public class PebbleHelper {
 			Log.i(TAG, "Opening app on pebble");
 
 		main.getPreview().showToast(pebbleStatusToast, R.string.pebble_app_open);
+		PebbleKit.closeAppOnPebble(main, WATCHAPP_UUID);
 		PebbleKit.startAppOnPebble(main, WATCHAPP_UUID);
 	}
 
