@@ -909,6 +909,12 @@ public class MainActivity extends Activity implements AudioListener.AudioListene
 		pebbleWatchButton.setEnabled(true);
     }
 
+    public void pebbleOnPictureTaken() {
+    	this.pebble_picture_state = MainActivity.pebble_picture_ready;
+
+    	pebble.onPictureTaken(this);
+    }
+
     public boolean showPebbleWatchButton() {
     	return pebble.isConnected(this);
     }
@@ -1798,6 +1804,9 @@ public class MainActivity extends Activity implements AudioListener.AudioListene
 		if( MyDebug.LOG )
 			Log.d(TAG, "takePictureFromRemote");
 		closePopup();
+
+		this.pebble_picture_state = MainActivity.pebble_picture_in_progress;
+
 		this.setTimerPreference(timer_delay);
 		this.preview.takePicturePressed();
 		// Reset the timer after picture taken
