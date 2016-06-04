@@ -20,6 +20,7 @@ public class PebbleHelper {
 	private static final UUID WATCHAPP_UUID = UUID.fromString("c187457d-3067-4062-8b1a-f8fde467b545");
 
 	private static final int KEY_CAPTURE = 1;
+	private static final int KEY_PICTURE_TAKEN = 2;
 
 
 	private Handler handler = new Handler();
@@ -77,5 +78,12 @@ public class PebbleHelper {
 			main.unregisterReceiver(appMessageReciever);
 			appMessageReciever = null;
 		}
+	}
+
+	public void onPictureTaken(MainActivity main) {
+		PebbleDictionary dict = new PebbleDictionary();
+
+		dict.addInt32(KEY_PICTURE_TAKEN, 1);
+		PebbleKit.sendDataToPebble(main, WATCHAPP_UUID, dict);
 	}
 }
