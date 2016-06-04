@@ -1796,6 +1796,8 @@ public class MainActivity extends Activity implements AudioListener.AudioListene
 		closePopup();
 		this.setTimerPreference(timer_delay);
 		this.preview.takePicturePressed();
+		// Reset the timer after picture taken
+		this.setTimerPreference(0);
     }
     // Pebble Changes End
 
