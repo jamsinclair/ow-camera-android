@@ -113,8 +113,12 @@ public class MainActivity extends Activity implements AudioListener.AudioListene
 	private ToastBoxer audio_control_toast = new ToastBoxer();
 	private boolean block_startup_toast = false;
 
-	// for pebble:
+	// Pebble Changes Start
 	private PebbleHelper pebble = new PebbleHelper();
+	public static final String pebble_picture_in_progress = "pebble_picture_in_progress";
+	public static final String pebble_picture_ready = "pebble_picture_ready";
+	public String pebble_picture_state = MainActivity.pebble_picture_ready;
+	// Pebble Changes End
 
 	// for testing:
 	public boolean is_test = false;
