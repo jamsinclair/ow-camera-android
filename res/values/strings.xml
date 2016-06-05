@@ -4,15 +4,15 @@
     <string name="app_name">OW Camera for Pebble</string>
     <string name="action_settings">Settings</string>
     <string name="action_popup">Popup settings</string>
-    <string name="intro_text">Touch to focus, and press the blue camera button to take photos. For more help, click Online help from Settings. Open Camera is completely free. If you like this app, please consider buying my donate app :) (see link in Settings, or Online help).\n\nPrivacy Policy: Location permission is required for geotagging, but this is disabled by default. If enabled, your location is encoded in the saved files (and it is only used for this purpose).</string>
+    <string name="intro_text">Touch to focus, and press the blue camera button to take photos. For more help, click Online help from Settings. OW Camera for Pebble is completely free. \n\nPrivacy Policy: Location permission is required for geotagging, but this is disabled by default. If enabled, your location is encoded in the saved files (and it is only used for this purpose).</string>
     <string name="intro_ok">OK (This message won\'t show again)</string>
-    
+
     <string name="answer_yes">Yes</string>
     <string name="answer_no">No</string>
 
     <string name="on">On</string> <!-- whether a setting is turned on, e.g., "Auto-stabilise: On" -->
     <string name="off">Off</string> <!-- whether a setting is turned off, e.g., "Auto-stabilise: Off" -->
-    
+
     <string name="choose_save_location">Choose save location:</string>
     <string name="clear_folder_history">Clear folder history</string>
     <string name="clear_folder_history_question">Clear folder history?</string>
@@ -60,7 +60,7 @@
     <string name="color_effect">Color effect</string>
     <string name="scene_mode">Scene mode</string>
     <string name="white_balance">White balance</string>
-    
+
     <string name="angle">Angle</string>
     <string name="direction">Direction</string>
     <string name="failed_to_open_camera_1">FAILED TO OPEN CAMERA.</string>
@@ -71,10 +71,10 @@
     <string name="free_memory">Free</string>
     <string name="screen_lock_message_1">[LOCKED:</string>
     <string name="screen_lock_message_2">Swipe to unlock]</string>
-    
+
     <string name="failed_to_stamp">Failed to stamp info to photo</string>
     <string name="metres_abbreviation">m</string> <!-- symbol short for metres -->
-    
+
     <string name="preference_category_camera_effects">Camera Effects</string>
     <string name="preference_auto_stabilise">Auto-stabilise</string>
     <string name="preference_auto_stabilise_summary">Images will be rotated so they are automatically level (photos only) (slower to take photos, and may fail on devices with too low memory)</string>
@@ -126,9 +126,9 @@
     <string name="preference_save_video_prefix">Save video prefix</string>
     <string name="preference_save_video_prefix_summary">The prefix to use for the save filenames for videos</string>
     <string name="preference_show_when_locked">Show camera when locked</string>
-    <string name="preference_show_when_locked_summary">If enabled, Open Camera will still show above any lockscreen (you\'ll still have to unlock to access Settings, Gallery etc)</string>
+    <string name="preference_show_when_locked_summary">If enabled, OW Camera for Pebble will still show above any lockscreen (you\'ll still have to unlock to access Settings, Gallery etc)</string>
     <string name="preference_startup_focus">Perform auto-focus on startup</string>
-    <string name="preference_startup_focus_summary">Whether to auto-focus when Open Camera is started. If you have the problem of flash turning on when starting, disable this option</string>
+    <string name="preference_startup_focus_summary">Whether to auto-focus when OW Camera for Pebble is started. If you have the problem of flash turning on when starting, disable this option</string>
     <string name="preference_lock_video">Lock screen when recording video</string>
     <string name="preference_lock_video_summary">When recording video, the GUI will be locked to prevent accidentally stopping recording. Swipe the screen to unlock. Note that video recording will always stop if the app goes into background or the screen is blanked.</string>
     <string name="preference_rotate_preview">Rotate preview</string>
@@ -173,10 +173,10 @@
     <string name="preference_take_photo_border">Show border when taking photo</string>
     <string name="preference_take_photo_border_summary">Display a border on the display to indicate taking a photo</string>
     <string name="preference_keep_display_on">Keep display on</string>
-    <string name="preference_keep_display_on_summary">If enabled, the screen won\'t switch off while the main Open Camera UI is active</string>
+    <string name="preference_keep_display_on_summary">If enabled, the screen won\'t switch off while the main OW Camera for Pebble UI is active</string>
     <string name="preference_max_brightness">Force maximum brightness</string>
     <string name="preference_max_brightness_summary">Force screen display to be at maximum brightness, rather than device default</string>
-    
+
     <string name="preference_category_camera_quality">Photo and Video Settings</string>
     <string name="preference_screen_photo_settings">Photo settings…</string>
     <string name="preference_screen_video_settings">Video settings…</string>
@@ -233,10 +233,10 @@
     <string name="preference_record_audio_channels_summary">Specify mono or stereo for recording audio (stereo only supported on some devices)</string>
     <string name="preference_video_flash">Flash while recording video</string>
     <string name="preference_video_flash_summary">If enabled, flash will switch on/off when recording video (can be used to tell camera is still recording at a distance)</string>
-    
+
     <string name="preference_category_online">Misc</string>
     <string name="preference_online_help">Online help</string>
-    <string name="preference_online_help_summary">Launch the Open Camera website in your browser</string>
+    <string name="preference_online_help_summary">Launch the OW Camera for Pebble website in your browser</string>
     <string name="preference_donate">Donate to support development</string>
     <string name="preference_donate_summary">If you like this app, please consider making a donation to support development. You can do this by purchasing my "donation app" - click this option to open up the page for my donation app. Thanks!</string>
     <string name="preference_use_camera2">Use Camera2 API</string>
@@ -244,14 +244,14 @@
     <string name="preference_about">About</string>
     <string name="preference_about_summary">App and debug information</string>
     <string name="preference_reset">Reset settings</string>
-    <string name="preference_reset_summary">Reset all Open Camera settings to default</string>
-    <string name="preference_reset_question">Are you sure you want to reset all Open Camera settings to default?</string>
+    <string name="preference_reset_summary">Reset all OW Camera for Pebble settings to default</string>
+    <string name="preference_reset_question">Are you sure you want to reset all OW Camera for Pebble settings to default?</string>
 
     <string name="about_ok">OK</string>
     <string name="about_available">Available</string>
     <string name="about_not_available">Not available</string>
     <string name="about_copy_to_clipboard">Copy to clipboard</string>
-    
+
     <string name="take_photo">Take Photo</string>
     <string name="gallery">Gallery</string>
     <string name="exposure">Exposure</string>
@@ -264,7 +264,7 @@
     <string name="switch_to_photo">Switch to photo mode</string>
     <string name="trash">Delete Last Picture</string>
     <string name="share">Share Photo</string>
-    
+
     <string name="parent_folder">Parent Folder</string>
     <string name="use_folder">Use Folder</string>
     <string name="new_folder">New Folder</string>
@@ -276,7 +276,7 @@
 
     <string name="saf_select_save_location">Select a save location</string>
     <string name="saf_cancelled">Storage Access Framework cancelled</string>
-    
+
     <!-- the permission names such as Microphone should match what Android calls them in the App permission settings -->
     <string name="permission_record_audio_not_available">Microphone permission is not available</string>
     <string name="permission_location_not_available">Location permission is not available</string>
@@ -286,12 +286,12 @@
 
     <string name="max_filesize">Max file size</string>
     <string name="mb_abbreviation">MB</string> <!-- symbol short for megabytes -->
-    
+
     <string name="audio_control_start">Start audio listening</string>
     <string name="audio_control_stop">Stop audio listening</string>
     <string name="speech_recognizer_started">Say \"cheese\"</string>
     <string name="audio_listener_started">Make a loud noise</string>
-    
+
     <!-- Pebble Strings -->
     <string name="pebble_watch">Pebble Watch Connected</string>
     <string name="pebble_app_open">Opening Pebble Watch App</string>

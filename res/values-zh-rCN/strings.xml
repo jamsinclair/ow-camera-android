@@ -4,7 +4,7 @@
     <string name="app_name">OW Camera for Pebble</string>
     <string name="action_settings">设置</string>    
     <string name="action_popup">弹出设置</string>
-    <string name="intro_text">轻触聚焦，点击蓝色相机按钮来拍照。点击设置中的在线帮助可以获得更多帮助。Open Camera 是完全免费的。如果你喜欢这个 app，请考虑购买我的捐赠 app :)(查看设置中的链接，或者在线帮助)。\n\n隐私政策：必须允许位置许可才能进行地理标记，但默认这是关闭的。如果开启，你的位置被编码在保存的文件中(并且它仅被用于此目的).\n\n(此消息将不会再显示。)</string>
+    <string name="intro_text">轻触聚焦，点击蓝色相机按钮来拍照。点击设置中的在线帮助可以获得更多帮助。OW Camera for Pebble 是完全免费的。如果你喜欢这个 app，请考虑购买我的捐赠 app :)(查看设置中的链接，或者在线帮助)。\n\n隐私政策：必须允许位置许可才能进行地理标记，但默认这是关闭的。如果开启，你的位置被编码在保存的文件中(并且它仅被用于此目的).\n\n(此消息将不会再显示。)</string>
     <string name="intro_ok">好 (此消息将不再显示)</string>
     
     <string name="answer_yes">是</string>
@@ -126,9 +126,9 @@
     <string name="preference_save_video_prefix">保存视频前缀</string>
     <string name="preference_save_video_prefix_summary">用于保存视频文件名的前缀</string>
     <string name="preference_show_when_locked">锁定时显示相机</string>
-    <string name="preference_show_when_locked_summary">如果开启，Open Camera 将仍然在任何锁屏之上显示 (你仍然必须解锁来访问设置，图库等)</string>
+    <string name="preference_show_when_locked_summary">如果开启，OW Camera for Pebble 将仍然在任何锁屏之上显示 (你仍然必须解锁来访问设置，图库等)</string>
     <string name="preference_startup_focus">启动时执行自动对焦</string>
-    <string name="preference_startup_focus_summary">Open Camera 启动时是否执行自动对焦。如果启动时开启闪光灯有问题，禁用此选项</string>
+    <string name="preference_startup_focus_summary">OW Camera for Pebble 启动时是否执行自动对焦。如果启动时开启闪光灯有问题，禁用此选项</string>
     <string name="preference_lock_video">录像时锁定屏幕</string>
     <string name="preference_lock_video_summary">当录制视频时，图形用户界面将被锁定以防止意外的停止录像。滑动屏幕以解锁。注意，如果程序转到后台或屏幕是空白，视频录制总是会停止。</string>
     <string name="preference_rotate_preview">旋转预览</string>
@@ -171,7 +171,7 @@
     <string name="preference_thumbnail_animation">显示缩略图动画</string>
     <string name="preference_thumbnail_animation_summary">当拍照时显示移动缩略图动画</string>
     <string name="preference_keep_display_on">保持屏幕常亮</string>
-    <string name="preference_keep_display_on_summary">如果开启，当 Open Camera 的主界面激活时，屏幕将不会关闭。</string>
+    <string name="preference_keep_display_on_summary">如果开启，当 OW Camera for Pebble 的主界面激活时，屏幕将不会关闭。</string>
     <string name="preference_max_brightness">强制最大亮度</string>
     <string name="preference_max_brightness_summary">强制屏幕以最大亮度显示，而不是设备默认值</string>
     
@@ -241,8 +241,8 @@
     <string name="preference_about">关于</string>
     <string name="preference_about_summary">应用程序和调试信息</string>
     <string name="preference_reset">复位设置</string>
-    <string name="preference_reset_summary">重设所有 Open Camera 设置为默认</string>
-    <string name="preference_reset_question">你确定要重设所有 Open Camera 设置为默认值吗？</string>
+    <string name="preference_reset_summary">重设所有 OW Camera for Pebble 设置为默认</string>
+    <string name="preference_reset_question">你确定要重设所有 OW Camera for Pebble 设置为默认值吗？</string>
 
     <string name="about_ok">好</string>
     <string name="about_available">可用</string>

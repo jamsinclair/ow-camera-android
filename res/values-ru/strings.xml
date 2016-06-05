@@ -122,7 +122,7 @@
     <string name="preference_save_video_prefix">Префикс для видео</string>
     <string name="preference_save_video_prefix_summary">Префикс имен файлов для сохраняемых видео</string>
     <string name="preference_show_when_locked">Камера на экране блокировки</string>
-    <string name="preference_show_when_locked_summary">Если включено, то Open Camera все равно будет отображаться поверх любого экрана блокировки (вы можете получить доступ к настройкам, галереи и т.д.)</string>
+    <string name="preference_show_when_locked_summary">Если включено, то OW Camera for Pebble все равно будет отображаться поверх любого экрана блокировки (вы можете получить доступ к настройкам, галереи и т.д.)</string>
     <string name="preference_lock_video">Блокировать экран при записи видео</string>
     <string name="preference_lock_video_summary">При записи видео, графический интерфейс будет заблокирован для предотвращения случайной остановки записи. Проведите по экрану, чтобы разблокировать. Обратите внимание, что запись видео остановится, если приложение перейдет в фоновый режим или погаснет экран.</string>
     <string name="preference_rotate_preview">Поворот превью</string>
@@ -165,7 +165,7 @@
     <string name="preference_thumbnail_animation">Показать эскиз анимации</string>
     <string name="preference_thumbnail_animation_summary">Отображение перемещение эскиза анимации при съемке фотографии</string>
     <string name="preference_keep_display_on">Не выключать дисплей</string>
-    <string name="preference_keep_display_on_summary">Если включено, экран не будет выключаться пока активен интерфейс Open Camera</string>
+    <string name="preference_keep_display_on_summary">Если включено, экран не будет выключаться пока активен интерфейс OW Camera for Pebble</string>
     <string name="preference_max_brightness">Максимальная яркость</string>
     <string name="preference_max_brightness_summary">Включение максимальной яркости во время съемки</string>
     
@@ -231,8 +231,8 @@
     <string name="preference_about">О программе</string>
     <string name="preference_about_summary">Информация</string>
     <string name="preference_reset">Сброс настроек</string>
-    <string name="preference_reset_summary">Сброс всех настроек Open Camera на стандартные значения</string>
-    <string name="preference_reset_question">Сбросить все настройки Open Camera на стандартные значения?</string>
+    <string name="preference_reset_summary">Сброс всех настроек OW Camera for Pebble на стандартные значения</string>
+    <string name="preference_reset_question">Сбросить все настройки OW Camera for Pebble на стандартные значения?</string>
 
     <string name="about_ok">ОК</string>
     <string name="about_available">Доступно</string>

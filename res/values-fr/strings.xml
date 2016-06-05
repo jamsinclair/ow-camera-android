@@ -4,7 +4,7 @@
     <string name="app_name">OW Camera for Pebble</string>
     <string name="action_settings">Paramètres</string>
     <string name="action_popup">Fenêtre de paramètres</string>
-    <string name="intro_text">Touchez pour faire la mise au point, et appuyez sur le bouton bleu Appareil photo pour faire des photos. Pour de l\'aide supplémentaire, cliquez sur Aide en ligne dans les paramètres. Open Camera est totallement gratuit. Si vous aimez cette application, n\'hésitez pas à me faire un don :) (voir le lien Paramètres, ou l\'Aide en ligne).\n\Politique de confidentialité : la permission Votre position est requise pour géocoder la photo, mais le paramètre est désactivé par défaut. Si vous l\'activez, votre position est encodée dans les photos (et c\'est utilisé uniquement à cet effet).</string>
+    <string name="intro_text">Touchez pour faire la mise au point, et appuyez sur le bouton bleu Appareil photo pour faire des photos. Pour de l\'aide supplémentaire, cliquez sur Aide en ligne dans les paramètres. OW Camera for Pebble est totallement gratuit. Si vous aimez cette application, n\'hésitez pas à me faire un don :) (voir le lien Paramètres, ou l\'Aide en ligne).\n\Politique de confidentialité : la permission Votre position est requise pour géocoder la photo, mais le paramètre est désactivé par défaut. Si vous l\'activez, votre position est encodée dans les photos (et c\'est utilisé uniquement à cet effet).</string>
     <string name="intro_ok">OK (ce message ne s\'affichera plus)</string>
     
     <string name="answer_yes">Oui</string>
@@ -122,7 +122,7 @@
     <string name="preference_save_video_prefix">Préfixe du nom de la vidéo</string>
     <string name="preference_save_video_prefix_summary">Le prefixe est utilisé pour le nom de fichier des vidéos</string>
     <string name="preference_show_when_locked">Afficher l\'application appareil vérouillé</string>
-    <string name="preference_show_when_locked_summary">Si activé, Open Camera s\'affichera toujours au-dessus de l\'écran de verrouillage (vous devez déverrouiller pour accéder aux paramètres, galerie, etc.)</string>
+    <string name="preference_show_when_locked_summary">Si activé, OW Camera for Pebble s\'affichera toujours au-dessus de l\'écran de verrouillage (vous devez déverrouiller pour accéder aux paramètres, galerie, etc.)</string>
     <string name="preference_lock_video">Verrouiller l\'écran lors de l\'enregistrement vidéo</string>
     <string name="preference_lock_video_summary">Lors de l\'enregistrement vidéo, l\'interface graphique sera verrouillé pour éviter d\'arrêter accidentellement l\'enregistrement. Balayez l\'écran pour déverrouiller. Notez que l\'enregistrement vidéo sera toujours arrêter si l\'application passe en arrière-plan ou l\'écran est occulté.</string>
     <string name="preference_rotate_preview">Tournez l\'aperçu</string>
@@ -165,7 +165,7 @@
     <string name="preference_thumbnail_animation">Voir l\'animation des vignettes</string>
     <string name="preference_thumbnail_animation_summary">Affiche l\'animation des vignettes lorsque vous prenez une photo</string>
     <string name="preference_keep_display_on">Garder l\'écran allumé</string>
-    <string name="preference_keep_display_on_summary">Si activé, l\'appareil ne se mettra pas en veille tant qu\'Open Camera sera actif</string>
+    <string name="preference_keep_display_on_summary">Si activé, l\'appareil ne se mettra pas en veille tant qu\'OW Camera for Pebble sera actif</string>
     <string name="preference_max_brightness">Force de la luminosité maximale</string>
     <string name="preference_max_brightness_summary">Affichage de l\'écran avec une luminosité au maximum, plutôt que périphérique par défaut</string>
     
@@ -231,8 +231,8 @@
     <string name="preference_about">A propos</string>
     <string name="preference_about_summary">Informations de l\'application et de debug</string>
     <string name="preference_reset">Réinitialiser les paramètres</string>
-    <string name="preference_reset_summary">Réinitialise tout les paramètre par défaut d\'Open Camera</string>
-    <string name="preference_reset_question">Êtes-vous sûr de vouloir réinitialiser tous les réglages de d\'Open Camera par défaut?</string>
+    <string name="preference_reset_summary">Réinitialise tout les paramètre par défaut d\'OW Camera for Pebble</string>
+    <string name="preference_reset_question">Êtes-vous sûr de vouloir réinitialiser tous les réglages de d\'OW Camera for Pebble par défaut?</string>
 
     <string name="about_ok">OK</string>
     <string name="about_available">Disponible</string>

@@ -4,7 +4,7 @@
     <string name="app_name">OW Camera for Pebble</string>
     <string name="action_settings">設定</string>    
     <string name="action_popup">彈出設定</string>
-    <string name="intro_text">輕觸對焦，按下藍色相機按鈕來拍照。按下設定中的線上說明可以取得更多協助。Open Camera 是完全免費的。如果您喜歡這個 app，請考慮購買我的捐贈 app :)(查看設定中的連結，或線上說明)。\n\n隱私政策：必須允許位置許可才能進行地理標記，但預設這是關閉的。如果開啟，您的位置會編碼在儲存的檔案中(且僅被用於此目的).\n\n(此訊息將不會再顯示。)</string>
+    <string name="intro_text">輕觸對焦，按下藍色相機按鈕來拍照。按下設定中的線上說明可以取得更多協助。OW Camera for Pebble 是完全免費的。如果您喜歡這個 app，請考慮購買我的捐贈 app :)(查看設定中的連結，或線上說明)。\n\n隱私政策：必須允許位置許可才能進行地理標記，但預設這是關閉的。如果開啟，您的位置會編碼在儲存的檔案中(且僅被用於此目的).\n\n(此訊息將不會再顯示。)</string>
     <string name="intro_ok">好 (此訊息將不再顯示)</string>
     
     <string name="answer_yes">是</string>
@@ -121,7 +121,7 @@
     <string name="preference_save_video_prefix">影片檔名前綴</string>
     <string name="preference_save_video_prefix_summary">用於儲存影片檔名的前置字串</string>
     <string name="preference_show_when_locked">鎖定時顯示相機</string>
-    <string name="preference_show_when_locked_summary">如果開啟，Open Camera 將在任何鎖定畫面上顯示 (您仍然必須解鎖來存取設定、相簿等)</string>
+    <string name="preference_show_when_locked_summary">如果開啟，OW Camera for Pebble 將在任何鎖定畫面上顯示 (您仍然必須解鎖來存取設定、相簿等)</string>
     <string name="preference_lock_video">錄影時鎖定螢幕</string>
     <string name="preference_lock_video_summary">當錄製影片時，圖形化使用者介面將被鎖定以防止意外的停止錄影。滑動螢幕以解鎖。注意，如果程式轉到背景或螢幕是空白，影片錄製會停止。</string>
     <string name="preference_rotate_preview">旋轉預覽</string>
@@ -164,7 +164,7 @@
     <string name="preference_thumbnail_animation">顯示縮圖動畫</string>
     <string name="preference_thumbnail_animation_summary">當拍照時顯示移動縮圖動畫</string>
     <string name="preference_keep_display_on">保持螢幕常亮</string>
-    <string name="preference_keep_display_on_summary">如果開啟，當 Open Camera 的主介面啟動時，螢幕將不會關閉。</string>
+    <string name="preference_keep_display_on_summary">如果開啟，當 OW Camera for Pebble 的主介面啟動時，螢幕將不會關閉。</string>
     <string name="preference_max_brightness">強制最大亮度</string>
     <string name="preference_max_brightness_summary">強制螢幕以最大亮度顯示，而不是裝置預設值</string>
     
@@ -230,8 +230,8 @@
     <string name="preference_about">關於</string>
     <string name="preference_about_summary">應用程式和除錯資訊</string>
     <string name="preference_reset">復原設定</string>
-    <string name="preference_reset_summary">重設所有 Open Camera 設定為預設</string>
-    <string name="preference_reset_question">您確定要重設所有 Open Camera 設定為預設值嗎？</string>
+    <string name="preference_reset_summary">重設所有 OW Camera for Pebble 設定為預設</string>
+    <string name="preference_reset_question">您確定要重設所有 OW Camera for Pebble 設定為預設值嗎？</string>
 
     <string name="about_ok">好</string>
     <string name="about_available">可用</string>

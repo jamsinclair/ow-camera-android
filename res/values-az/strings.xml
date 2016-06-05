@@ -3,7 +3,7 @@
     <string name="app_name">OW Camera for Pebble</string>
     <string name="action_settings">Parametrlər</string>
     <string name="action_popup">Popup parametrləri</string>
-    <string name="intro_text">Şəkil çəkmək üçün fokusa və göy rəngli kamera düyməsinə toxunun. Daha çox kömək üçün, Parametrlərdə Onlayın köməyə toxunun. Open Camera tamamilə pulsuzdur. Əgər proqram xoşunuza gəlirsə, lütfən mənim proqramımı alaraq ianə vermək barədə düşünün :) (Parametrlərə və ya onlayn köməyə baxın).\n\nMəxfilik Siyasəti: Coğrafi yer bildirişi üçün icazə tələb olunur, lakin susmaya görə bu funksiya bağlıdır. Əgər işə salınarsa, sizin məkan məlumatlarınız saxlanılan fayllarda kodlaşacaq (və o ancaq bu məqsəd üçün istifadə olunur).</string>
+    <string name="intro_text">Şəkil çəkmək üçün fokusa və göy rəngli kamera düyməsinə toxunun. Daha çox kömək üçün, Parametrlərdə Onlayın köməyə toxunun. OW Camera for Pebble tamamilə pulsuzdur. Əgər proqram xoşunuza gəlirsə, lütfən mənim proqramımı alaraq ianə vermək barədə düşünün :) (Parametrlərə və ya onlayn köməyə baxın).\n\nMəxfilik Siyasəti: Coğrafi yer bildirişi üçün icazə tələb olunur, lakin susmaya görə bu funksiya bağlıdır. Əgər işə salınarsa, sizin məkan məlumatlarınız saxlanılan fayllarda kodlaşacaq (və o ancaq bu məqsəd üçün istifadə olunur).</string>
     <string name="intro_ok">OK (Bu mesaj bir daha göstərilməyəcək)</string>
     <string name="answer_yes">Hə</string>
     <string name="answer_no">Yox</string>
@@ -107,7 +107,7 @@
     <string name="preference_save_video_prefix">Saxlanılan video prefiksi</string>
     <string name="preference_save_video_prefix_summary">Videoların saxlanması zamanı fayl adlarının generasiyasında istifadə olunacaq ön yazı</string>
     <string name="preference_show_when_locked">Kilid ekranında kamera</string>
-    <string name="preference_show_when_locked_summary">Əgər qoşulubsa, o zaman Open Camera kilid ekranı üzərindən görünəcək (siz digər parametrlərə, qalereyaya və s. giriş əldə edə bilərsiniz)</string>
+    <string name="preference_show_when_locked_summary">Əgər qoşulubsa, o zaman OW Camera for Pebble kilid ekranı üzərindən görünəcək (siz digər parametrlərə, qalereyaya və s. giriş əldə edə bilərsiniz)</string>
     <string name="preference_lock_video">Video qeydi zamanı ekranı kilidlə</string>
     <string name="preference_lock_video_summary">Video qeydi zamanı, qeydin təsadüfi dayanmasının qarşısını almaq üçün qrafik interfeys kilidlənəcək. Kilidi açmaq üçün ekranı sürüşdürün. Diqqətli olun ki, əgər proqram fon rejiminə keçsə və ya ekran sönsə video qeydi dayanacaq.</string>
     <string name="preference_rotate_preview">Ön izləmə fırlanması</string>
@@ -198,7 +198,7 @@
     <string name="preference_about">Haqqında</string>
     <string name="preference_about_summary">Proqram məlumatları</string>
     <string name="preference_reset">Parametrləri sıfırla</string>
-    <string name="preference_reset_summary">Bütün Open Camera parametrlərinin susmaya görə sıfırlanması</string>
+    <string name="preference_reset_summary">Bütün OW Camera for Pebble parametrlərinin susmaya görə sıfırlanması</string>
     <string name="preference_reset_question">Bütün papametrlərin sıfırlanmasını istəyirsiniz?</string>
     <string name="about_ok">OK</string>
     <string name="about_available">Mövcuddur</string>

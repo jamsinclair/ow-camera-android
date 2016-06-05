@@ -4,7 +4,7 @@
     <string name="app_name">OW Camera for Pebble</string>
     <string name="action_settings">Ajustes</string>
     <string name="action_popup">Ajustes de ventana emergente</string>
-    <string name="intro_text">Toca para enfocar y pulsa el boton de la cámara azul para realizar la foto. Para más ayuda pulsa Ayuda Online desde los ajustes. Open Camera es completamente gratuito. Si te gusta esta app, considera comprar mi versión de pago :) (mira en Ajustes o en Ayuda Online).\n\nPolítica de privacidad: Se requiere el permiso de Localización para geotagging, pero esta deshabilitado por defecto. Si se habilita, tu localización será codificada en los archivos guardados (y solo se usara para este propósito).</string>
+    <string name="intro_text">Toca para enfocar y pulsa el boton de la cámara azul para realizar la foto. Para más ayuda pulsa Ayuda Online desde los ajustes. OW Camera for Pebble es completamente gratuito. Si te gusta esta app, considera comprar mi versión de pago :) (mira en Ajustes o en Ayuda Online).\n\nPolítica de privacidad: Se requiere el permiso de Localización para geotagging, pero esta deshabilitado por defecto. Si se habilita, tu localización será codificada en los archivos guardados (y solo se usara para este propósito).</string>
     <string name="intro_ok">OK (Este mensaje no se mostrara otra vez.)</string>
     
     <string name="answer_yes">Si</string>
@@ -121,7 +121,7 @@
     <string name="preference_save_video_prefix">Guardar prefijo vídeo</string>
     <string name="preference_save_video_prefix_summary">Prefijo utilizado para el nombre de los vídeos</string>
     <string name="preference_show_when_locked">Mostrar camara cuando se bloquee el terminal</string>
-    <string name="preference_show_when_locked_summary">Si se activa, Open Camera mostrara la camara (aunque tendrás que desbloquear para acceder a los ajustes, galería etc…)</string>
+    <string name="preference_show_when_locked_summary">Si se activa, OW Camera for Pebble mostrara la camara (aunque tendrás que desbloquear para acceder a los ajustes, galería etc…)</string>
     <string name="preference_lock_video">Bloquear pantalla cuando se grabe vídeo</string>
     <string name="preference_lock_video_summary">Cuando se grabe vídeo se bloqueará la Interfaz para prevenir el finalizado de la grabación. Desliza para desbloquear. Nota: el vídeo siempre finalizará si la app pasa a segundo plano o la pantalla se apaga.</string>
     <string name="preference_rotate_preview">Preview de la rotación</string>
@@ -230,8 +230,8 @@
     <string name="preference_about">Sobre</string>
     <string name="preference_about_summary">Informacion de la App y del debug</string>
     <string name="preference_reset">Resetear ajustes</string>
-    <string name="preference_reset_summary">Resetear todos los ajustes de Open Camera a los predefinidos</string>
-    <string name="preference_reset_question">Estás seguro de que quieres resetear todos los ajustes de Open Camera a los predefinidos?</string>
+    <string name="preference_reset_summary">Resetear todos los ajustes de OW Camera for Pebble a los predefinidos</string>
+    <string name="preference_reset_question">Estás seguro de que quieres resetear todos los ajustes de OW Camera for Pebble a los predefinidos?</string>
     
     <string name="about_ok">OK</string>
     <string name="about_available">Disponible</string>

@@ -4,7 +4,7 @@
     <string name="app_name">OW Camera for Pebble</string>
     <string name="action_settings">Einstellungen</string>
     <string name="action_popup">Popup-Einstellungen</string>
-    <string name="intro_text">Zum Fokussieren das Display berühren und den blauen Button drücken um Fotos zu machen. Mehr Hilfe erhalten Sie über Einstellungen-&gt;Online-Hilfe. Open Camera ist vollkommen frei. Wenn Sie diese App mögen, wäre es schön, wenn Sie meine Spenden-App kaufen :) (Link hierzu in den Einstellungen oder der Online-Hilfe)\n\nDatenschutz: Der Standortzugriff wird für das Geotagging gebraucht, was jedoch standardmäßig deaktiviert ist. Wenn aktiviert, wird Ihr Standort lediglich in den Aufnahmen gespeichert.</string>
+    <string name="intro_text">Zum Fokussieren das Display berühren und den blauen Button drücken um Fotos zu machen. Mehr Hilfe erhalten Sie über Einstellungen-&gt;Online-Hilfe. OW Camera for Pebble ist vollkommen frei. Wenn Sie diese App mögen, wäre es schön, wenn Sie meine Spenden-App kaufen :) (Link hierzu in den Einstellungen oder der Online-Hilfe)\n\nDatenschutz: Der Standortzugriff wird für das Geotagging gebraucht, was jedoch standardmäßig deaktiviert ist. Wenn aktiviert, wird Ihr Standort lediglich in den Aufnahmen gespeichert.</string>
     <string name="intro_ok">OK (Diese Nachricht wird nicht wieder angezeigt.)</string>
 
     <string name="answer_yes">Ja</string>
@@ -122,7 +122,7 @@
     <string name="preference_save_video_prefix">Video-Präfix</string>
     <string name="preference_save_video_prefix_summary">Den Präfix für die Dateinamen der Videos einstellen</string>
     <string name="preference_show_when_locked">Kamera trotz Sperre anzeigen</string>
-    <string name="preference_show_when_locked_summary">Wenn aktiviert, wird Open Camera über dem Sperrbildschirm stehen (das Entsperren ist jedoch für den Zugriff auf Einstellungen, Galerie usw. nötig)</string>
+    <string name="preference_show_when_locked_summary">Wenn aktiviert, wird OW Camera for Pebble über dem Sperrbildschirm stehen (das Entsperren ist jedoch für den Zugriff auf Einstellungen, Galerie usw. nötig)</string>
     <string name="preference_lock_video">Bildschirm bei Videoaufnahme sperren</string>
     <string name="preference_lock_video_summary">Wenn aktiviert, wird bei Videoaufnahmen die Oberfläche gesperrt, um versehentliches Stoppen zu verhindern. Zum Entsperren einfach wischen.</string>
     <string name="preference_rotate_preview">Vorschau drehen</string>
@@ -231,8 +231,8 @@
     <string name="preference_about">Über</string>
     <string name="preference_about_summary">Anwendungs- und Debug-Informationen</string>
     <string name="preference_reset">Einstellungen zurücksetzen</string>
-    <string name="preference_reset_summary">Standard-Einstellungen von Open Camera wiederherstellen</string>
-    <string name="preference_reset_question">Sind Sie sich sicher, alle Einstellungen von Open Camera auf die Standardwerte zurückzusetzen?</string>
+    <string name="preference_reset_summary">Standard-Einstellungen von OW Camera for Pebble wiederherstellen</string>
+    <string name="preference_reset_question">Sind Sie sich sicher, alle Einstellungen von OW Camera for Pebble auf die Standardwerte zurückzusetzen?</string>
 
     <string name="about_ok">Okay</string>
     <string name="about_available">verfügbar</string>
