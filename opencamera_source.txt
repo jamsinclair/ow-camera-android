@@ -12,6 +12,6 @@ Please contact me if you have suggestions, bug fixes, ports to other platforms o
 
 Homepage: http://opencamera.sourceforge.net/
 
-Google Play download: https://play.google.com/store/apps/details?id=net.sourceforge.opencamera
+Google Play download: https://play.google.com/store/apps/details?id=com.github.jamsinclair.pebbleopencamera
 
 Mark Harman 17 October 2013
