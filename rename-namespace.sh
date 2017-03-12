@@ -1,15 +1,20 @@
 #!/bin/sh
 
-find ./src -type f -print0 | xargs -0 sed -i '' 's/net.sourceforge.opencamera/com.github.jamsinclair.owcamera/g'
-find ./src -type f -print0 | xargs -0 sed -i '' 's/Open Camera/OW Camera for Pebble/g'
+export LC_CTYPE=C
+export LANG=C
 
-perl -pi -e 's/net.sourceforge.opencamera/com.github.jamsinclair.owcamera/g' AndroidManifest.xml
+find ./app/src/main/java -type f -print0 | xargs -0 sed -i '' 's/net.sourceforge.opencamera/com.github.jamsinclair.owcamera/g'
+find ./app/src/main/java -type f -print0 | xargs -0 sed -i '' 's/Open Camera/OW Camera for Pebble/g'
+find ./app/src/main/res/values* -type f -print0 | xargs -0 sed -i '' 's/Open Camera/OW Camera for Pebble/g'
 
-mkdir src/main/java/com
-mkdir src/main/java/com/github
-mkdir src/main/java/com/github/jamsinclair
+perl -pi -e 's/net.sourceforge.opencamera/com.github.jamsinclair.owcamera/g' ./app/src/main/AndroidManifest.xml
+perl -pi -e 's/net.sourceforge.opencamera/com.github.jamsinclair.owcamera/g' ./app/build.gradle
 
-mv src/main/java/net/sourceforge/opencamera src/main/java/com/github/jamsinclair
-mv src/main/java/com/github/jamsinclair/opencamera src/main/java/com/github/jamsinclair/owcamera
+mkdir ./app/src/main/java/com
+mkdir ./app/src/main/java/com/github
+mkdir ./app/src/main/java/com/github/jamsinclair
 
-rm -rf net/sourceforge
+mv ./app/src/main/java/net/sourceforge/opencamera ./app/src/main/java/com/github/jamsinclair
+mv ./app/src/main/java/com/github/jamsinclair/opencamera ./app/src/main/java/com/github/jamsinclair/owcamera
+
+rm -rf ./app/src/main/java/net
