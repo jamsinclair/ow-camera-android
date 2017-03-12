@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Open Camera</string>
+    <string name="app_name">OW Camera for Pebble</string>
     <string name="action_settings">Definições</string>
     <string name="action_popup">Definições rápidas</string>
-    <string name="intro_text">Tocar para focar, pressione o botão de câmara azul para tirar fotografias. Para mais ajuda, clique em Ajuda online nas Definições. O Open Camera é completamente grátis. Se gosta desta aplicação, por favor concidere comprar a minha aplicação de donativo :) (veja o link nas Definições, ou Ajuda online).\n\nPolítica de Privacidade: A permissão de localização é necessária para o geotagging, mas isto encontra-se desativado por predefinição. Se ativado, a sua localização será codificada e guardada nos ficheiros (e apenas será usada para este propósito).</string>
+    <string name="intro_text">Tocar para focar, pressione o botão de câmara azul para tirar fotografias. Para mais ajuda, clique em Ajuda online nas Definições. O OW Camera for Pebble é completamente grátis. Se gosta desta aplicação, por favor concidere comprar a minha aplicação de donativo :) (veja o link nas Definições, ou Ajuda online).\n\nPolítica de Privacidade: A permissão de localização é necessária para o geotagging, mas isto encontra-se desativado por predefinição. Se ativado, a sua localização será codificada e guardada nos ficheiros (e apenas será usada para este propósito).</string>
     <string name="intro_ok">OK (Esta mensagem não será mostrada novamente)</string>
     
     <string name="answer_yes">Sim</string>
@@ -129,9 +129,9 @@
     <string name="preference_save_zulu_time">Fuso horário do nome dos ficheiros</string>
     <string name="preference_save_zulu_time_summary">Optar por usar o fuso horário local ou UTC (Tempo Universal Coordenado) no nome dos ficheiros das fotografias e vídeos</string>
     <string name="preference_show_when_locked">Mostrar câmara quando bloqueado</string>
-    <string name="preference_show_when_locked_summary">Se ativado, o Open Camera continuará a ser mostrado acima de qualquer ecrã de bloqueio (terá na mesma de desbloquear para aceder às Definições, Galeria, etc.)</string>
+    <string name="preference_show_when_locked_summary">Se ativado, o OW Camera for Pebble continuará a ser mostrado acima de qualquer ecrã de bloqueio (terá na mesma de desbloquear para aceder às Definições, Galeria, etc.)</string>
     <string name="preference_startup_focus">Efetuar auto-focagem na inicialização</string>
-    <string name="preference_startup_focus_summary">Auto-focar quando o Open Camera é iniciado. Se tiver o problema do flash ligar no início, desative esta opção</string>
+    <string name="preference_startup_focus_summary">Auto-focar quando o OW Camera for Pebble é iniciado. Se tiver o problema do flash ligar no início, desative esta opção</string>
     <string name="preference_lock_video">Bloquear ecrã durante a gravação de vídeo</string>
     <string name="preference_lock_video_summary">Durante a gravação de vídeo, a interface será bloqueada para prevenir parar a gravação acidentalmente. Deslize o ecrã para desbloquear. Note que a gravação de vídeo será sempre parada se a aplicação entrar em segundo plano ou se o ecrã for desligado.</string>
     <string name="preference_rotate_preview">Rodar pré-visualização</string>
@@ -177,7 +177,7 @@
     <string name="preference_take_photo_border">Mostrar contorno quando tirada uma fotografia</string>
     <string name="preference_take_photo_border_summary">Exibir contorno no ecrã para indicar que está a ser tirada uma fotografia</string>
     <string name="preference_keep_display_on">Manter ecrã ligado</string>
-    <string name="preference_keep_display_on_summary">Se ativado, o ecrã não será desligado se a interface principal do Open Camera estiver ativa</string>
+    <string name="preference_keep_display_on_summary">Se ativado, o ecrã não será desligado se a interface principal do OW Camera for Pebble estiver ativa</string>
     <string name="preference_max_brightness">Forçar brilho máximo</string>
     <string name="preference_max_brightness_summary">Forçar o ecrã a estar com o brilho máximo, em vez da predefinição do dispositivo</string>
     
@@ -244,7 +244,7 @@
     
     <string name="preference_category_online">Diversos</string>
     <string name="preference_online_help">Ajuda online</string>
-    <string name="preference_online_help_summary">Abrir o website do Open Camera no seu navegador</string>
+    <string name="preference_online_help_summary">Abrir o website do OW Camera for Pebble no seu navegador</string>
     <string name="preference_donate">Doar para apoiar o desenvolvimento</string>
     <string name="preference_donate_summary">Se gosta desta aplicação, por favor concidere fazer um donativo para apoiar o desenvolvimento. Pode fazê-lo ao comprar a minha "aplicação de donativo" - clique nesta opção para abrir a página da minha aplicação de donativo. Obrigado!</string>
     <string name="preference_use_camera2">Usar API Camera2</string>
@@ -252,8 +252,8 @@
     <string name="preference_about">Sobre</string>
     <string name="preference_about_summary">Informações da aplicação e de depuração</string>
     <string name="preference_reset">Repor definições</string>
-    <string name="preference_reset_summary">Repor todas as definições do Open Camera para as predefinidas</string>
-    <string name="preference_reset_question">Tem a certeza que pretende repor todas as definições do Open Camera para as predefinidas?</string>
+    <string name="preference_reset_summary">Repor todas as definições do OW Camera for Pebble para as predefinidas</string>
+    <string name="preference_reset_question">Tem a certeza que pretende repor todas as definições do OW Camera for Pebble para as predefinidas?</string>
 
     <string name="about_available">Disponível</string>
     <string name="about_not_available">Não disponível</string>

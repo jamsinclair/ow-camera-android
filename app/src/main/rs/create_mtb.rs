@@ -1,5 +1,5 @@
 #pragma version(1)
-#pragma rs java_package_name(net.sourceforge.opencamera)
+#pragma rs java_package_name(com.github.jamsinclair.owcamera)
 #pragma rs_fp_relaxed
 
 rs_allocation out_bitmap; // the resultant median threshold bitmap

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Open Camera</string>
+    <string name="app_name">OW Camera for Pebble</string>
     <string name="action_settings">Nastavitve</string>
     <string name="action_popup">Nastavitve pojavnih oken</string>
-    <string name="intro_text">Dotaknite se za ostrenje in pritisnite moder gumb za slikanje fotografij. Za več pomoči kliknite Spletna pomoč v nastavitvah. Open Camera je popolnoma brezplačen. Če vam je ta program všeč, prosim razmislite o nakupu mojega programa za darovanje :) (glejte povezavo v nastavitvah ali spletno pomoč).\n\nPravilnik o zasebnosti: za označevanje z zemljepisnim položajem je zahtevano dovoljenje za lokacijo, vendar je to privzeto onemogočeno. Če je omogočeno, se vaša lokacija v shranjenih datotekah kodira (in se uporablja samo za ta namen).</string>
+    <string name="intro_text">Dotaknite se za ostrenje in pritisnite moder gumb za slikanje fotografij. Za več pomoči kliknite Spletna pomoč v nastavitvah. OW Camera for Pebble je popolnoma brezplačen. Če vam je ta program všeč, prosim razmislite o nakupu mojega programa za darovanje :) (glejte povezavo v nastavitvah ali spletno pomoč).\n\nPravilnik o zasebnosti: za označevanje z zemljepisnim položajem je zahtevano dovoljenje za lokacijo, vendar je to privzeto onemogočeno. Če je omogočeno, se vaša lokacija v shranjenih datotekah kodira (in se uporablja samo za ta namen).</string>
     <string name="intro_ok">V redu (to sporočilo se ne bo več prikazovalo)</string>
     
     <string name="answer_yes">Da</string>
@@ -129,7 +129,7 @@
 	<string name="preference_save_zulu_time">Oblika časa za ime datoteke</string>
     <string name="preference_save_zulu_time_summary">Ali naj se uporabi krajevni čas ali čas UTC (Coordinated Universal Time) za poimenovanje fotografij in videoposnetkov</string>
     <string name="preference_show_when_locked">Prikaži fotoaparat, ko je zaklenjeno</string>
-    <string name="preference_show_when_locked_summary">Če je omogočeno, se bo Open Camera še vedno prikazoval nad zaklenjenim zaslonom (še vedno boste morali odkleniti za dostop do nastavitev, galerije itd.)</string>
+    <string name="preference_show_when_locked_summary">Če je omogočeno, se bo OW Camera for Pebble še vedno prikazoval nad zaklenjenim zaslonom (še vedno boste morali odkleniti za dostop do nastavitev, galerije itd.)</string>
     <string name="preference_startup_focus">Izvedi samodejno ostrenje ob zagonu</string>
     <string name="preference_startup_focus_summary">Ali naj se izvede samodejno ostrenje ob zagonu Open Camere. Če imate težavo z vklopom bliskavice ob zagonu, onemogočite to možnost</string>
     <string name="preference_lock_video">Zakleni zaslon ob snemanju videoposnetkov</string>
@@ -244,7 +244,7 @@
     
     <string name="preference_category_online">Razno</string>
     <string name="preference_online_help">Spletna pomoč</string>
-    <string name="preference_online_help_summary">Zaženi spletno stran Open Camera v mojem brskalniku</string>
+    <string name="preference_online_help_summary">Zaženi spletno stran OW Camera for Pebble v mojem brskalniku</string>
     <string name="preference_donate">Daruj za podporo razvoju</string>
     <string name="preference_donate_summary">Če vam je ta program všeč, razmislite o darovanju, da podprete razvoj. To lahko naredite z nakupom mojega "programa za darovanje" - kliknite na to možnost za odpiranje strani z mojim programom. Hvala!</string>
     <string name="preference_use_camera2">Uporabi API Camera2</string>
@@ -252,8 +252,8 @@
     <string name="preference_about">O programu</string>
     <string name="preference_about_summary">Program in podatki za razhroščevanje</string>
     <string name="preference_reset">Ponastavi nastavitve</string>
-    <string name="preference_reset_summary">Ponastavi vse nastavitve Open Camera na privzete</string>
-    <string name="preference_reset_question">Ali res želite ponastaviti vse nastavitve Open Camera na privzete?</string>
+    <string name="preference_reset_summary">Ponastavi vse nastavitve OW Camera for Pebble na privzete</string>
+    <string name="preference_reset_question">Ali res želite ponastaviti vse nastavitve OW Camera for Pebble na privzete?</string>
 
     <string name="about_available">Na voljo</string>
     <string name="about_not_available">Ni na voljo</string>

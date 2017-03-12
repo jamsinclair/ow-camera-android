@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Open Camera</string>
+    <string name="app_name">OW Camera for Pebble</string>
     <string name="action_settings">設定</string>
     <string name="action_popup">ポップアップ設定</string>
-    <string name="intro_text">写真を撮るには青いカメラボタンを押してください。ヘルプの参照は「設定」から「オンラインヘルプ」をタップして行います。Open Cameraは無料ですが寄付を受け付けておりますのでご検討ください(リンクまたはオンラインヘルプから参照してください)。\n\nプライバシー方針:位置情報をジオタグのために使用します。位置情報の適用を初めは無効にしています。有効にすると位置情報が保存したファイルに埋め込まれます(位置情報はこのためだけに使用します)。</string>
+    <string name="intro_text">写真を撮るには青いカメラボタンを押してください。ヘルプの参照は「設定」から「オンラインヘルプ」をタップして行います。OW Camera for Pebbleは無料ですが寄付を受け付けておりますのでご検討ください(リンクまたはオンラインヘルプから参照してください)。\n\nプライバシー方針:位置情報をジオタグのために使用します。位置情報の適用を初めは無効にしています。有効にすると位置情報が保存したファイルに埋め込まれます(位置情報はこのためだけに使用します)。</string>
     <string name="intro_ok">了解しました (この内容を再度表示しない)</string>
     
     <string name="answer_yes">はい</string>
@@ -123,7 +123,7 @@
     <string name="preference_save_video_prefix">保存するビデオの命名ルール</string>
     <string name="preference_save_video_prefix_summary">保存するビデオのファイル名の手前につける内容を設定します</string>
     <string name="preference_show_when_locked">ロック画面上でもカメラを表示する</string>
-    <string name="preference_show_when_locked_summary">有効にするとOpen Cameraがロック画面上でも表示されます(ギャラリーを規定のアプリにしているなど、ロックの解除が必要になる場合もあります)</string>
+    <string name="preference_show_when_locked_summary">有効にするとOW Camera for Pebbleがロック画面上でも表示されます(ギャラリーを規定のアプリにしているなど、ロックの解除が必要になる場合もあります)</string>
 
     <string name="preference_lock_video">録画中は画面を固定する</string>
     <string name="preference_lock_video_summary">録画が停止しないように画面を固定します。固定は画面をスワイプすると解除されます。アプリをバックグラウンドに移すか画面を消灯しても録画は停止します。</string>
@@ -235,7 +235,7 @@
     <string name="preference_about">このアプリについて</string>
     <string name="preference_about_summary">アプリとデバッグの情報を表示します</string>
     <string name="preference_reset">設定をリセットする</string>
-    <string name="preference_reset_summary">Open Cameraの設定をすべてリセットします</string>
+    <string name="preference_reset_summary">OW Camera for Pebbleの設定をすべてリセットします</string>
     <string name="preference_reset_question">本当にすべての設定をリセットしますか？</string>
 
     <string name="about_available">利用可能</string>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Open Camera</string>
+    <string name="app_name">OW Camera for Pebble</string>
     <string name="action_settings">Ayarlar</string>
     <string name="action_popup">Popup Ayarları</string>
-    <string name="intro_text">Odaklamak için dokunun ve fotoğraf çekmek için mavi kamera butonuna basın. Daha fazla yardım için, Online yardım formu ayarlarına tıklayın. Open Camera tamamen ücretsizdir. Bu uygulamayı beğendiyseniz, bağış uygulamamı satın almayı düşünebilirsiniz. :) (Ayarlar ya da Online yardımdaki linke gözatın).\n\nGizlilik Poliçesi: Konum izni yer etiketi için gereklidir fakat öntanımlı ayar olarak pasifleştirilmiştir. Etkinleştirilirse konumunuz kayıtlı dosyalarda kodlanacaktır.(sadece bu amaçla kullanılacaktır.).</string>
+    <string name="intro_text">Odaklamak için dokunun ve fotoğraf çekmek için mavi kamera butonuna basın. Daha fazla yardım için, Online yardım formu ayarlarına tıklayın. OW Camera for Pebble tamamen ücretsizdir. Bu uygulamayı beğendiyseniz, bağış uygulamamı satın almayı düşünebilirsiniz. :) (Ayarlar ya da Online yardımdaki linke gözatın).\n\nGizlilik Poliçesi: Konum izni yer etiketi için gereklidir fakat öntanımlı ayar olarak pasifleştirilmiştir. Etkinleştirilirse konumunuz kayıtlı dosyalarda kodlanacaktır.(sadece bu amaçla kullanılacaktır.).</string>
     <string name="intro_ok">TAMAM (Bu mesaj tekrar gösterilmeyecektir.)</string>
     
     <string name="answer_yes">Evet</string>
@@ -123,7 +123,7 @@
     <string name="preference_save_video_prefix">vidyo adlandırma öneki kaydet</string>
     <string name="preference_save_video_prefix_summary">Vidyolarda dosya adlarını kaydetmede kullanılacak önek</string>
     <string name="preference_show_when_locked">Kilitlendiğinde kamerayı göster</string>
-    <string name="preference_show_when_locked_summary">Etkinleştirilirse, Open Camera yukarıda kilit ekranı göstermeye devam edecektir(Sizin\' ayarlara, galeriye vb. erişmek için yine de ekranı açamanız gerekir)</string>
+    <string name="preference_show_when_locked_summary">Etkinleştirilirse, OW Camera for Pebble yukarıda kilit ekranı göstermeye devam edecektir(Sizin\' ayarlara, galeriye vb. erişmek için yine de ekranı açamanız gerekir)</string>
 
     <string name="preference_lock_video">Vidyo kaydederken ekranı kilitle</string>
     <string name="preference_lock_video_summary">Vidyo kaydederken, GUI kazara kaydı durdurmayı önlemek için kilitlenecek. Kilidi açmak için ekranı kaydırın. Vidyo kaydederken eğer uygulama arkaplana giderse ya da ekran boşsa kayıt daima durdurulacaktır.</string>
@@ -167,7 +167,7 @@
     <string name="preference_thumbnail_animation">Önizleme animasyonunu göster</string>
     <string name="preference_thumbnail_animation_summary">Fotoğraf çekerken önizleme animasyon hareketini göster</string>
     <string name="preference_keep_display_on">Ekranı açık tut</string>
-    <string name="preference_keep_display_on_summary">Etkinleştirilirse, Open Camera kullanıcı arayüzü aktifken ekran kapanmayacaktır</string>
+    <string name="preference_keep_display_on_summary">Etkinleştirilirse, OW Camera for Pebble kullanıcı arayüzü aktifken ekran kapanmayacaktır</string>
     <string name="preference_max_brightness">Maksimum parlaklık için zorla</string>
     <string name="preference_max_brightness_summary">Cihazın öntanımlı ayarına bakmaksızın ekran görüntüsünü maksimum parlaklık için zorlar</string>
     
@@ -234,8 +234,8 @@
     <string name="preference_about">Hakkında</string>
     <string name="preference_about_summary">Uygulama ve eksiklik bilgisi</string>
     <string name="preference_reset">Ayarları temizle</string>
-    <string name="preference_reset_summary">Tüm Open Camera ayarlarını öntanımlı ayarlara döndür</string>
-    <string name="preference_reset_question">Tüm Open Camera ayarlarını öntanımlı ayarlara döndürmek istediğinize emin misiniz?</string>
+    <string name="preference_reset_summary">Tüm OW Camera for Pebble ayarlarını öntanımlı ayarlara döndür</string>
+    <string name="preference_reset_question">Tüm OW Camera for Pebble ayarlarını öntanımlı ayarlara döndürmek istediğinize emin misiniz?</string>
 
     <string name="about_available">Etkinleştir</string>
     <string name="about_not_available">Etkin değil</string>

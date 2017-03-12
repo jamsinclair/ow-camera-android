@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Open Camera</string>
+    <string name="app_name">OW Camera for Pebble</string>
     <string name="action_settings">Nastavení</string>
     <string name="action_popup">Vyskakovací nastavení</string>
-    <string name="intro_text">Dotkněte se pro zaostření a zmáčkněte modré tlačítko pro pořízení fotografie. Pro nápovědu klikněte na Online nápověda v Nastavení. Open Camera je zcela zdarma. Pokud se vám aplikace líbí, zvažte koupi mé darovací aplikace :) (odkaz je v Nastavení nebo v Online nápovědě).\n\nZásady ochrany osobních údajů: Povolení k určení polohy je nutné pro geotagging, ale je implicitně vypnuto. Pokud jej povolíte, vaše poloha bude zakódována do uložených souborů (a použita pouze pro tyto účely).</string>
+    <string name="intro_text">Dotkněte se pro zaostření a zmáčkněte modré tlačítko pro pořízení fotografie. Pro nápovědu klikněte na Online nápověda v Nastavení. OW Camera for Pebble je zcela zdarma. Pokud se vám aplikace líbí, zvažte koupi mé darovací aplikace :) (odkaz je v Nastavení nebo v Online nápovědě).\n\nZásady ochrany osobních údajů: Povolení k určení polohy je nutné pro geotagging, ale je implicitně vypnuto. Pokud jej povolíte, vaše poloha bude zakódována do uložených souborů (a použita pouze pro tyto účely).</string>
     <string name="intro_ok">OK (Tato zpráva se již znovu nezobrazí.)</string>
     
     <string name="answer_yes">Ano</string>
@@ -123,7 +123,7 @@
     <string name="preference_save_video_prefix">Uložit předponu pro videa</string>
     <string name="preference_save_video_prefix_summary">Předpona používaná při ukládání videí</string>
     <string name="preference_show_when_locked">Zobrazit fotoaparát při zamčení</string>
-    <string name="preference_show_when_locked_summary">Pokud zapnuto, Open Camera se bude zobrazovat nad jakoukoliv zamčenou obrazovkou (stále bude požadováno odemčení pro přístup do Nastavení, Galerie atd.)</string>
+    <string name="preference_show_when_locked_summary">Pokud zapnuto, OW Camera for Pebble se bude zobrazovat nad jakoukoliv zamčenou obrazovkou (stále bude požadováno odemčení pro přístup do Nastavení, Galerie atd.)</string>
 
     <string name="preference_lock_video">Zamknout obrazovku při nahrávání videa</string>
     <string name="preference_lock_video_summary">Při nahrávání videa bude GUI uzamčeno proti náhodnému zastavení nahrávání. Přejeďte prstem pro odemčení. Mějte na paměti, že nahrávání videa bude zastaveno vždy když bude aplikace na pozadí nebo je obrazovka prázdná.</string>
@@ -235,8 +235,8 @@
     <string name="preference_about">O programu</string>
     <string name="preference_about_summary">Informace aplikace a ladění</string>
     <string name="preference_reset">Obnovit nastavení</string>
-    <string name="preference_reset_summary">Obnoví všechna nastavení Open Camera na původní</string>
-    <string name="preference_reset_question">Jste si jist/á, že chcete obnovit všechna nastavení Open Camera na původní?</string>
+    <string name="preference_reset_summary">Obnoví všechna nastavení OW Camera for Pebble na původní</string>
+    <string name="preference_reset_question">Jste si jist/á, že chcete obnovit všechna nastavení OW Camera for Pebble na původní?</string>
 
     <string name="about_available">Dostupné</string>
     <string name="about_not_available">Nedostupné</string>

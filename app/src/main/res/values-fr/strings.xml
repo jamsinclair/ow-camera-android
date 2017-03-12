@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Open Camera</string>
+    <string name="app_name">OW Camera for Pebble</string>
     <string name="action_settings">Paramètres</string>
     <string name="action_popup">Fenêtre de paramètres</string>
-    <string name="intro_text">Touchez pour faire la mise au point, et appuyez sur le bouton bleu «\u00A0Appareil photo\u00A0» pour faire des photos. Pour de l\'aide supplémentaire, cliquez sur «\u00A0Aide en ligne\u00A0» dans les paramètres. Open Camera est totalement gratuit. Si vous aimez cette application, n\'hésitez pas à me faire un don\u00A0:) (voir le lien dans «\u00A0Paramètres\u00A0», ou «\u00A0Aide en ligne\u00A0».\nPolitique de confidentialité\u00A0: la permission «\u00A0Position\u00A0» est requise pour géolocaliser la photo, mais le paramètre est désactivé par défaut. Si vous l\'activez, votre position est encodée dans les photos (et n\'est utilisée qu\'à cet effet).</string>
+    <string name="intro_text">Touchez pour faire la mise au point, et appuyez sur le bouton bleu «\u00A0Appareil photo\u00A0» pour faire des photos. Pour de l\'aide supplémentaire, cliquez sur «\u00A0Aide en ligne\u00A0» dans les paramètres. OW Camera for Pebble est totalement gratuit. Si vous aimez cette application, n\'hésitez pas à me faire un don\u00A0:) (voir le lien dans «\u00A0Paramètres\u00A0», ou «\u00A0Aide en ligne\u00A0».\nPolitique de confidentialité\u00A0: la permission «\u00A0Position\u00A0» est requise pour géolocaliser la photo, mais le paramètre est désactivé par défaut. Si vous l\'activez, votre position est encodée dans les photos (et n\'est utilisée qu\'à cet effet).</string>
     <string name="intro_ok">OK (ce message ne s\'affichera plus)</string>
     
     <string name="answer_yes">Oui</string>
@@ -126,9 +126,9 @@
     <string name="preference_save_video_prefix">Préfixe du nom de la vidéo</string>
     <string name="preference_save_video_prefix_summary">Le préfixe est utilisé pour le nom de fichier des vidéos</string>
     <string name="preference_show_when_locked">Afficher l\'application appareil verrouillé</string>
-    <string name="preference_show_when_locked_summary">Si activé, Open Camera s\'affichera toujours au-dessus de l\'écran de verrouillage (vous devez déverrouiller pour accéder aux paramètres, galerie, etc.)</string>
+    <string name="preference_show_when_locked_summary">Si activé, OW Camera for Pebble s\'affichera toujours au-dessus de l\'écran de verrouillage (vous devez déverrouiller pour accéder aux paramètres, galerie, etc.)</string>
     <string name="preference_startup_focus">Faire un auto-focus au démarrage</string>
-    <string name="preference_startup_focus_summary">Active l\'auto-focus au démarrage de Open Camera. Si vous avez un problème de flash qui s\'allume au démarrage, désactivez cette option</string>
+    <string name="preference_startup_focus_summary">Active l\'auto-focus au démarrage de OW Camera for Pebble. Si vous avez un problème de flash qui s\'allume au démarrage, désactivez cette option</string>
     <string name="preference_lock_video">Verrouiller l\'écran lors de l\'enregistrement vidéo</string>
     <string name="preference_lock_video_summary">Lors de l\'enregistrement vidéo, l\'interface graphique sera verrouillée pour éviter d\'arrêter accidentellement l\'enregistrement. Balayez l\'écran pour déverrouiller. Notez que l\'enregistrement vidéo sera toujours arrêté si l\'application passe en arrière-plan ou si l\'écran est occulté.</string>
     <string name="preference_rotate_preview">Pivoter l\'aperçu</string>
@@ -174,7 +174,7 @@
     <string name="preference_take_photo_border">Ajouter une bordure à la photo</string>
     <string name="preference_take_photo_border_summary">Affiche une bordure à l\'écran pour indiquer la prise d\'une photo</string>
     <string name="preference_keep_display_on">Garder l\'écran allumé</string>
-    <string name="preference_keep_display_on_summary">Si activé, l\'appareil ne se mettra pas en veille tant qu\'Open Camera sera actif</string>
+    <string name="preference_keep_display_on_summary">Si activé, l\'appareil ne se mettra pas en veille tant qu\'OW Camera for Pebble sera actif</string>
     <string name="preference_max_brightness">Forcer la luminosité maximale</string>
     <string name="preference_max_brightness_summary">Affichage de l\'écran avec une luminosité au maximum, plutôt que la valeur par défaut du périphérique</string>
     
@@ -238,7 +238,7 @@
     
     <string name="preference_category_online">Divers</string>
     <string name="preference_online_help">Aide en ligne</string>
-    <string name="preference_online_help_summary">Ouvre le site web de Open Camera dans votre navigateur</string>
+    <string name="preference_online_help_summary">Ouvre le site web de OW Camera for Pebble dans votre navigateur</string>
     <string name="preference_donate">Faire un don pour soutenir le développement</string>
     <string name="preference_donate_summary">Si vous aimez ce logiciel, n\'hésitez pas à faire un don. Vous pouvez le faire via l\'achat de mon «\u00A0application de don\u00A0» - Cliquer sur cette option va ouvrir la page de l\'application de don. Merci\u00A0!</string>
     <string name="preference_use_camera2">Utiliser l\'API Camera2</string>
@@ -246,8 +246,8 @@
     <string name="preference_about">À propos</string>
     <string name="preference_about_summary">Informations de l\'application et de debug</string>
     <string name="preference_reset">Réinitialiser les paramètres</string>
-    <string name="preference_reset_summary">Réinitialise tout les paramètres aux valeurs par défaut d\'Open Camera</string>
-    <string name="preference_reset_question">Êtes-vous sûr de vouloir réinitialiser tout les réglages d\'Open Camera par défaut\u00A0?</string>
+    <string name="preference_reset_summary">Réinitialise tout les paramètres aux valeurs par défaut d\'OW Camera for Pebble</string>
+    <string name="preference_reset_question">Êtes-vous sûr de vouloir réinitialiser tout les réglages d\'OW Camera for Pebble par défaut\u00A0?</string>
 
     <string name="about_available">Disponible</string>
     <string name="about_not_available">Non disponible</string>
