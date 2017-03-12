@@ -256,6 +256,19 @@ public class MainUI {
 			view.setLayoutParams(layoutParams);
 			setViewRotation(view, ui_rotation);
 
+			// Pebble Changes Start
+			view = main_activity.findViewById(R.id.pebble_watch);
+			layoutParams = (RelativeLayout.LayoutParams)view.getLayoutParams();
+			layoutParams.addRule(align_parent_left, 0);
+			layoutParams.addRule(align_parent_right, 0);
+			layoutParams.addRule(align_parent_top, RelativeLayout.TRUE);
+			layoutParams.addRule(align_parent_bottom, 0);
+			layoutParams.addRule(left_of, R.id.switch_camera);
+			layoutParams.addRule(right_of, 0);
+			view.setLayoutParams(layoutParams);
+			view.setRotation(ui_rotation);
+			// Pebble Changes End
+
 			view = main_activity.findViewById(R.id.audio_control);
 			layoutParams = (RelativeLayout.LayoutParams)view.getLayoutParams();
 			layoutParams.addRule(align_parent_left, 0);
@@ -566,6 +579,13 @@ public class MainUI {
 			    View settingsButton = main_activity.findViewById(R.id.settings);
 			    View zoomControls = main_activity.findViewById(R.id.zoom);
 			    View zoomSeekBar = main_activity.findViewById(R.id.zoom_seekbar);
+
+				// Pebble Changes Start
+				View pebbleWatchButton = (View) main_activity.findViewById(R.id.pebble_watch);
+				if (main_activity.showPebbleWatchButton())
+					pebbleWatchButton.setVisibility(visibility);
+				// Pebble Changes End
+
 			    if( main_activity.getPreview().getCameraControllerManager().getNumberOfCameras() > 1 )
 			    	switchCameraButton.setVisibility(visibility);
 		    	switchVideoButton.setVisibility(visibility);
@@ -629,6 +649,13 @@ public class MainUI {
 			    View exposureLockButton = main_activity.findViewById(R.id.exposure_lock);
 			    View audioControlButton = main_activity.findViewById(R.id.audio_control);
 			    View popupButton = main_activity.findViewById(R.id.popup);
+
+				// Pebble Changes Start
+				View pebbleWatchButton = (View) main_activity.findViewById(R.id.pebble_watch);
+				if (main_activity.showPebbleWatchButton())
+					pebbleWatchButton.setVisibility(visibility);
+				// Pebble Changes End
+
 			    if( main_activity.getPreview().getCameraControllerManager().getNumberOfCameras() > 1 )
 			    	switchCameraButton.setVisibility(visibility);
 			    if( !main_activity.getPreview().isVideo() )
