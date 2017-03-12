@@ -5,6 +5,7 @@ import net.sourceforge.opencamera.CameraController.CameraControllerManager2;
 import net.sourceforge.opencamera.Preview.Preview;
 import net.sourceforge.opencamera.UI.FolderChooserDialog;
 import net.sourceforge.opencamera.UI.MainUI;
+import net.sourceforge.opencamera.PebbleHelper.PebbleHelper;
 
 import java.io.File;
 import java.io.IOException;
@@ -125,6 +126,13 @@ public class MainActivity extends Activity implements AudioListener.AudioListene
 	private boolean block_startup_toast = false; // used when returning from Settings/Popup - if we're displaying a toast anyway, don't want to display the info toast too
 
 	private final int manual_n = 1000; // the number of values on the seekbar used for manual focus distance, ISO or exposure speed
+
+	// Pebble Changes Start
+	private PebbleHelper pebble = new PebbleHelper();
+	public static final String pebble_picture_in_progress = "pebble_picture_in_progress";
+	public static final String pebble_picture_ready = "pebble_picture_ready";
+	public String pebble_picture_state = MainActivity.pebble_picture_ready;
+	// Pebble Changes End
 
 	// for testing; must be volatile for test project reading the state
 	public boolean is_test; // whether called from OpenCamera.test testing
@@ -253,6 +261,11 @@ public class MainActivity extends Activity implements AudioListener.AudioListene
 			Log.d(TAG, "onCreate: time after setting button visibility: " + (System.currentTimeMillis() - debug_time));
 		View pauseVideoButton = findViewById(R.id.pause_video);
 		pauseVideoButton.setVisibility(View.INVISIBLE);
+
+		// Pebble Changes Start
+		View pebbleWatchButton = (View) findViewById(R.id.pebble_watch);
+		pebbleWatchButton.setVisibility(this.showPebbleWatchButton() ? View.VISIBLE : View.GONE);
+		// Pebble Changes End
 
 		// listen for orientation event change
 	    orientationEventListener = new OrientationEventListener(this) {
@@ -759,6 +772,12 @@ public class MainActivity extends Activity implements AudioListener.AudioListene
 
 		updateGalleryIcon(); // update in case images deleted whilst idle
 
+		// Pebble Changes Start
+		View pebbleWatchButton = (View) findViewById(R.id.pebble_watch);
+		pebbleWatchButton.setVisibility(this.showPebbleWatchButton() ? View.VISIBLE : View.GONE);
+		pebble.onResume(this);
+		// Pebble Changes End
+
 		preview.onResume();
 
 		if( MyDebug.LOG ) {
@@ -798,6 +817,9 @@ public class MainActivity extends Activity implements AudioListener.AudioListene
 		releaseSound();
 		applicationInterface.clearLastImages(); // this should happen when pausing the preview, but call explicitly just to be safe
 		preview.onPause();
+		// Pebble Changes Start
+		pebble.onPause(this);
+		// Pebble Changes End
 		if( MyDebug.LOG ) {
 			Log.d(TAG, "onPause: total time to pause: " + (System.currentTimeMillis() - debug_time));
 		}
@@ -914,6 +936,28 @@ public class MainActivity extends Activity implements AudioListener.AudioListene
 			mainUI.setSwitchCameraContentDescription();
 		}
     }
+
+	// Pebble Changes Start
+	public void clickedPebbleWatch(View view) {
+		if( MyDebug.LOG )
+			Log.d(TAG, "clickedPebbleWatch");
+		this.closePopup();
+		View pebbleWatchButton = (View) findViewById(R.id.pebble_watch);
+		pebbleWatchButton.setEnabled(false); // prevent slowdown if user repeatedly clicks
+		pebble.onClickPebbleWatchButton(this);
+		pebbleWatchButton.setEnabled(true);
+	}
+
+	public void pebbleOnPictureTaken() {
+		this.pebble_picture_state = MainActivity.pebble_picture_ready;
+
+		pebble.onPictureTaken(this);
+	}
+
+	public boolean showPebbleWatchButton() {
+		return pebble.isConnected(this);
+	}
+	// Pebble Changes End
 
     public void clickedSwitchVideo(View view) {
 		if( MyDebug.LOG )
@@ -1380,6 +1424,16 @@ public class MainActivity extends Activity implements AudioListener.AudioListene
 		setImmersiveMode(false);
 		camera_in_background = true;
     }
+
+
+	// Pebble Changes Start
+	private void setTimerPreference(int delay) {
+		SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
+		SharedPreferences.Editor editor = settings.edit();
+		editor.putString(PreferenceKeys.getTimerPreferenceKey(), Integer.toString(delay));
+		editor.apply();
+	}
+	// Pebble Changes End
     
     public void showPreview(boolean show) {
 		if( MyDebug.LOG )
@@ -1919,6 +1973,21 @@ public class MainActivity extends Activity implements AudioListener.AudioListene
 		closePopup();
     	this.preview.takePicturePressed();
     }
+
+	// Pebble Changes Start
+	public void takePictureFromRemote(int timer_delay) {
+		if( MyDebug.LOG )
+			Log.d(TAG, "takePictureFromRemote");
+		closePopup();
+
+		this.pebble_picture_state = MainActivity.pebble_picture_in_progress;
+
+		this.setTimerPreference(timer_delay);
+		this.preview.takePicturePressed();
+		// Reset the timer after picture taken
+		this.setTimerPreference(0);
+	}
+	// Pebble Changes End
     
     /** Lock the screen - this is Open Camera's own lock to guard against accidental presses,
      *  not the standard Android lock.
