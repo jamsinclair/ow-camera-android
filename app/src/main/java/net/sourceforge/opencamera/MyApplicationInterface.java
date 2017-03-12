@@ -1820,6 +1820,12 @@ public class MyApplicationInterface implements ApplicationInterface {
         
 		if( MyDebug.LOG )
 			Log.d(TAG, "onPictureTaken complete, success: " + success);
+
+		// Pebble Changes Start
+		// Check to see if picture capture was in progress from pebble, call handler function
+		if(main_activity.pebble_picture_state == MainActivity.pebble_picture_in_progress)
+			main_activity.pebbleOnPictureTaken();
+		// Pebble Changes End
 		
 		return success;
 	}
