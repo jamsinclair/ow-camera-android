@@ -413,4 +413,6 @@
     <string name="pebble_app_open">Opening Pebble Watch App</string>
     <string name="pebble_connected">Pebble Watch Connected</string>
     <string name="pebble_disconnected">Pebble Watch Disconnected</string>
+    <string name="preference_privacy_policy">Privacy Policy</string>
+    <string name="preference_privacy_policy_summary">View the app\'s privacy policy in your browser</string>
 </resources>
