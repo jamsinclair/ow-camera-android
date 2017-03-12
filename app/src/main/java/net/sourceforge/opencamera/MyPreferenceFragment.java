@@ -320,7 +320,7 @@ public class MyPreferenceFragment extends PreferenceFragment implements OnShared
                 	if( pref.getKey().equals("preference_online_help") ) {
                 		if( MyDebug.LOG )
                 			Log.d(TAG, "user clicked online help");
-            	        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://opencamera.sourceforge.net/"));
+            	        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://jamsinclair.github.io/ow-camera-android/"));
             	        startActivity(browserIntent);
                 		return false;
                 	}
@@ -328,6 +328,25 @@ public class MyPreferenceFragment extends PreferenceFragment implements OnShared
                 }
             });
         }
+
+		// Pebble Changes Start
+		{
+			final Preference pref = findPreference("preference_privacy_policy");
+			pref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+				@Override
+				public boolean onPreferenceClick(Preference arg0) {
+					if( pref.getKey().equals("preference_privacy_policy") ) {
+						if( MyDebug.LOG )
+							Log.d(TAG, "user clicked privacy policy");
+						Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://jamsinclair.github.io/ow-camera-android#privacy"));
+						startActivity(browserIntent);
+						return false;
+					}
+					return false;
+				}
+			});
+		}
+		// Pebble Changes End
 
         /*{
         	EditTextPreference edit = (EditTextPreference)findPreference("preference_save_location");
