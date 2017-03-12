@@ -2,3 +2,7 @@
   margin: 0 auto;
   max-width: 600px;
 }
+
+#info a {
+  color: #3273dc;
+}
