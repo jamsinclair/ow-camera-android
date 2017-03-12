@@ -61,6 +61,9 @@ public class MainUI {
 		this.setIcon(R.id.exposure);
 		this.setIcon(R.id.switch_video);
 		this.setIcon(R.id.switch_camera);
+		// Pebble Changes Start
+		this.setIcon(R.id.pebble_watch);
+		// Pebble Changes End
 		this.setIcon(R.id.audio_control);
 		this.setIcon(R.id.trash);
 		this.setIcon(R.id.share);
