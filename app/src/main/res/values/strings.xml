@@ -407,4 +407,10 @@
     <string name="capturing">Capturing…</string>
 
     <string name="audio_listener_failed">Failed to initalise audio listening</string>
+
+    <!-- Pebble Strings -->
+    <string name="pebble_watch">Pebble Watch Connected</string>
+    <string name="pebble_app_open">Opening Pebble Watch App</string>
+    <string name="pebble_connected">Pebble Watch Connected</string>
+    <string name="pebble_disconnected">Pebble Watch Disconnected</string>
 </resources>
