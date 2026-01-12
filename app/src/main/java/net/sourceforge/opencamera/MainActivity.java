@@ -10,6 +10,7 @@ import net.sourceforge.opencamera.ui.DrawPreview;
 import net.sourceforge.opencamera.ui.FolderChooserDialog;
 import net.sourceforge.opencamera.ui.MainUI;
 import net.sourceforge.opencamera.ui.ManualSeekbars;
+import net.sourceforge.opencamera.PebbleHelper;
 
 import java.io.File;
 import java.io.IOException;
@@ -74,6 +75,7 @@ import android.speech.tts.TextToSpeech;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -157,6 +159,16 @@ public class MainActivity extends AppCompatActivity implements PreferenceFragmen
     private boolean textToSpeechSuccess;
 
     private AudioListener audio_listener; // may be null - created when needed
+
+    // Pebble Changes Start
+    private PebbleHelper pebble;
+    public static final String pebble_picture_in_progress = "pebble_picture_in_progress";
+    public static final String pebble_picture_ready = "pebble_picture_ready";
+    public String pebble_picture_state = MainActivity.pebble_picture_ready;
+    public static final String ACTION_PEBBLE_CAPTURE = "net.sourceforge.opencamera.PEBBLE_CAPTURE";
+    public static final String EXTRA_TIMER_DURATION = "timer_duration";
+    private android.content.BroadcastReceiver pebbleMessageReceiver;
+    // Pebble Changes End
 
     //private boolean ui_placement_right = true;
 
@@ -273,6 +285,11 @@ public class MainActivity extends AppCompatActivity implements PreferenceFragmen
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+
+        // Pebble Changes Start
+        pebble = new PebbleHelper(androidx.lifecycle.LifecycleOwnerKt.getLifecycleScope(this));
+        // Pebble Changes End
+
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false); // initialise any unset preferences to their default values
         if( MyDebug.LOG )
             Log.d(TAG, "onCreate: time after setting default preference values: " + (System.currentTimeMillis() - debug_time));
@@ -1525,6 +1542,7 @@ public class MainActivity extends AppCompatActivity implements PreferenceFragmen
         return this.mWaterDensity;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
     @Override
     protected void onResume() {
         long debug_time = 0;
@@ -1534,6 +1552,30 @@ public class MainActivity extends AppCompatActivity implements PreferenceFragmen
         }
         super.onResume();
         this.app_is_paused = false; // must be set before initLocation() at least
+
+        // Pebble Changes Start
+        pebble.onResume(this);
+
+        if (pebbleMessageReceiver == null) {
+            pebbleMessageReceiver = new android.content.BroadcastReceiver() {
+                @Override
+                public void onReceive(Context context, Intent intent) {
+                    if (ACTION_PEBBLE_CAPTURE.equals(intent.getAction())) {
+                        int timerDuration = intent.getIntExtra(EXTRA_TIMER_DURATION, 0);
+                        if (MyDebug.LOG) {
+                            Log.d(TAG, "Pebble capture action received with duration of " + timerDuration);
+                        }
+                        takePictureFromPebble(timerDuration);
+                    }
+                }
+            };
+            android.content.IntentFilter filter = new android.content.IntentFilter(ACTION_PEBBLE_CAPTURE);
+            registerReceiver(pebbleMessageReceiver, filter, android.content.Context.RECEIVER_NOT_EXPORTED);
+            if (MyDebug.LOG) {
+                Log.d(TAG, "Pebble broadcast receiver registered");
+            }
+        }
+        // Pebble Changes End
 
         // this is intentionally true, not false, as the uncovering happens in DrawPreview when we receive frames from the camera after it's opened
         // (this should already have been set from the call in onPause(), but we set it here again just in case)
@@ -1714,6 +1756,14 @@ public class MainActivity extends AppCompatActivity implements PreferenceFragmen
         }
         super.onPause(); // docs say to call this before freeing other things
         this.app_is_paused = true;
+
+        // Pebble Changes Start
+        pebble.onPause(this);
+        if (pebbleMessageReceiver != null) {
+            unregisterReceiver(pebbleMessageReceiver);
+            pebbleMessageReceiver = null;
+        }
+        // Pebble Changes End
 
         mainUI.destroyPopup(); // important as user could change/reset settings from Android settings when pausing
         if( this.switch_multi_camera_dialog != null ) {
@@ -2056,6 +2106,17 @@ public class MainActivity extends AppCompatActivity implements PreferenceFragmen
             Log.d(TAG, "clickedTakePhotoVideoSnapshot");
         this.takePicture(true);
     }
+
+    // Pebble Changes Start
+    public void takePictureFromPebble(int timerDurationSeconds) {
+        if( MyDebug.LOG )
+            Log.d(TAG, "takePictureFromPebble: " + timerDurationSeconds);
+
+        long timerDelayMs = timerDurationSeconds * 1000L;
+        this.pebble_picture_state = MainActivity.pebble_picture_in_progress;
+        preview.takePictureWithTimerMs(timerDelayMs);
+    }
+    // Pebble Changes End
 
     public void clickedPauseVideo(View view) {
         if( MyDebug.LOG )
@@ -2498,6 +2559,24 @@ public class MainActivity extends AppCompatActivity implements PreferenceFragmen
             push_switched_camera = true;
         }
     }
+
+    // Pebble Changes Start
+    public void clickedPebbleWatch(View view) {
+        if( MyDebug.LOG )
+            Log.d(TAG, "clickedPebbleWatch");
+        this.closePopup();
+        View pebbleWatchButton = (View) findViewById(R.id.pebble_watch);
+        pebbleWatchButton.setEnabled(false); // prevent slowdown if user repeatedly clicks
+        pebble.onClickPebbleWatchButton(this);
+        pebbleWatchButton.setEnabled(true);
+    }
+
+    public void pebbleOnPictureTaken() {
+        this.pebble_picture_state = MainActivity.pebble_picture_ready;
+
+        pebble.onPictureTaken(this);
+    }
+    // Pebble Changes End
 
     /** Returns list of logical cameras with same facing as the supplied camera_id.
      */

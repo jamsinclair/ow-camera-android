@@ -149,6 +149,15 @@
             android:enabled="true"
             android:exported="false"
             />
+        <!-- Pebble Changes Start -->
+        <service android:name="net.sourceforge.opencamera.PebbleListenerService"
+         android:exported="true"
+         tools:ignore="ExportedService">
+            <intent-filter>
+                <action android:name="io.rebble.pebblekit2.RECEIVE_DATA_FROM_WATCH"/>
+            </intent-filter>
+        </service>
+        <!-- Pebble Changes End -->
     </application>
     <!-- needed for targetting Android 11 - see https://developer.android.com/about/versions/11/behavior-changes-11 -->
     <queries>

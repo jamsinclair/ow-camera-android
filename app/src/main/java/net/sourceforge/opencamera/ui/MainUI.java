@@ -458,6 +458,7 @@ public class MainUI {
                 buttons_permanent.add(main_activity.findViewById(R.id.gallery));
             }
             buttons_permanent.add(main_activity.findViewById(R.id.settings));
+            buttons_permanent.add(main_activity.findViewById(R.id.pebble_watch));
             buttons_permanent.add(main_activity.findViewById(R.id.popup));
             buttons_permanent.add(main_activity.findViewById(R.id.exposure));
             //buttons_permanent.add(main_activity.findViewById(R.id.switch_video));
@@ -1340,6 +1341,11 @@ public class MainUI {
                 View zoomSeekBar = main_activity.findViewById(R.id.zoom_seekbar);
                 View focusSeekBar = main_activity.findViewById(R.id.focus_seekbar);
                 View focusBracketingTargetSeekBar = main_activity.findViewById(R.id.focus_bracketing_target_seekbar);
+                // Pebble Changes Start
+                View pebbleWatchButton = (View) main_activity.findViewById(R.id.pebble_watch);
+                pebbleWatchButton.setVisibility(visibility);
+                // Pebble Changes End
+
                 if( main_activity.getPreview().getCameraControllerManager().getNumberOfCameras() > 1 )
                     switchCameraButton.setVisibility(visibility);
                 if( main_activity.showSwitchMultiCamIcon() )
@@ -1459,6 +1465,12 @@ public class MainUI {
                 View faceDetectionButton = main_activity.findViewById(R.id.face_detection);
                 View audioControlButton = main_activity.findViewById(R.id.audio_control);
                 View popupButton = main_activity.findViewById(R.id.popup);
+
+                // Pebble Changes Start
+                View pebbleWatchButton = (View) main_activity.findViewById(R.id.pebble_watch);
+                pebbleWatchButton.setVisibility(visibility);
+                // Pebble Changes End
+
                 settingsButton.setVisibility(visibility_video); // still allow settings when recording video - arguably we shouldn't, but looks wierd given that the other default icons aren't hidden when recording video
                 if( main_activity.getPreview().getCameraControllerManager().getNumberOfCameras() > 1 )
                     switchCameraButton.setVisibility(visibility);

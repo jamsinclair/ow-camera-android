@@ -1042,8 +1042,8 @@
     <string name="preference_privacy_policy_text" translatable="false"> <!-- if changing this, remember to consider if the online privacy policy needs updating -->
         <!-- now interpreted as HTML so that we can have the mailto link, for the contact that's needed for Google Play policies! -->
         <!-- be careful of rewording/removing bits, as some things here may be required for Google Play policies -->
-        Open Camera is developed by Mark Harman.
-        &lt;br/&gt;Open Camera accesses camera sensor and microphone data to fulfil its purpose as a camera.
+        OW Camera 2 for Pebble is developed by James Sinclair.
+        &lt;br/&gt;OW Camera 2 for Pebble accesses camera sensor and microphone data to fulfil its purpose as a camera.
         Microphone is also used for the optional \"Audio control\".
         &lt;br/&gt;Access to files is needed (at least for Android 9 and earlier) to save resultant files such as photos and videos to your device.
         &lt;br/&gt;Location permission is requested in order to deliver the optional geotagging features (for photos and videos,
@@ -1053,16 +1053,16 @@
         the Bluetooth remote control feature also requires location permission (on Android 11 or earlier) or
         Nearby Devices permission (on Android 12 or later).
         &lt;br/&gt;Resultant data such as photos or videos can be shared with
-        other apps if you use the share option in Open Camera, or when Open Camera is called by
+        other apps if you use the share option in OW Camera 2 for Pebble, or when OW Camera 2 for Pebble is called by
         another app on your device, or when you use the Storage Access Framework option to save
         to another app or service.
-        &lt;br/&gt;Data handling procedures, data retention and deletion policies: Open Camera
+        &lt;br/&gt;Data handling procedures, data retention and deletion policies: OW Camera 2 for Pebble
         does not transmit personal or sensitive information to me.
-        &lt;br/&gt;Since Open Camera also uses operating system APIs, you should review relevant privacy policies
+        &lt;br/&gt;Since OW Camera 2 for Pebble also uses operating system APIs, you should review relevant privacy policies
         such as for your device, manufacturer, operating system and/or Google accounts. For example:
         &lt;br/&gt;*Apps/services such as cloud services on your device may auto-upload photos and videos that are saved on your device.
         &lt;br/&gt;If you have inquiries about my privacy policy, please contact me by email at
-        &lt;a href=\"mailto:mark.harman.apps@gmail.com?subject=Open%20Camera%20privacy%20policy\"&gt;mark.harman.apps@gmail.com&lt;/a&gt;.
+        &lt;a href=\"mailto:jamsinclairnz+owcameraandroid@gmail.com?subject=OW%20Camera%202%20for%20Pebble%20privacy%20policy\"&gt;jamsinclairnz+owcameraandroid@gmail.com&lt;/a&gt;.
     </string>
 
     <string name="preference_screen_licences" translatable="false">Open Source licences</string>
@@ -1086,20 +1086,17 @@
     <string name="whats_new_text" translatable="false">
         <small>[This dialog is shown when Open Camera is updated. You can disable it under
             Settings/On screen GUI/Show What\'s New dialog.]</small>
-        \n\n<b>v1.55:</b>\n
+        \n\n<b>v1.0.0:</b>\n
         <ul>
-            <li>More crop guides: 65:24 and 3:1.\n</li>
-            <li>Shutter button now changes to a red square when recording video.\n</li>
-            <li>Removed -/+ controls for zoom and exposure compensation.\n</li>
-            <li>Show current save location in settings.\n</li>
-            <li>Don\'t block UI thread when first starting camera preview (for Camera2 API with Android 14+).\n</li>
-            <li>Various other improvements and bug fixes.\n</li>
+            <li>Initial release of OW Camera 2 for Pebble on Google Play Store, based on Open Camera 1.5.5.</li>
+            <li>Adds support for Pebble smartwatches remote shutter control.</li>
         </ul>
     </string>
 
     <!-- Pebble Strings -->
     <string name="pebble_watch">Pebble Watch Connected</string>
     <string name="pebble_app_open">Opening Pebble Watch App</string>
+    <string name="pebble_app_open_failed">Failed to open app on Pebble Watch</string>
     <string name="pebble_connected">Pebble Watch Connected</string>
     <string name="pebble_disconnected">Pebble Watch Disconnected</string>
 </resources>

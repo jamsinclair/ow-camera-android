@@ -42,13 +42,17 @@
 
     <ImageButton
         android:id="@+id/pebble_watch"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:padding="10dp"
         android:scaleType="fitCenter"
         android:contentDescription="@string/pebble_watch"
-        android:src="@drawable/pebble_watch"
+        app:srcCompat="@drawable/pebble_watch"
+        android:stateListAnimator="@animator/button_animation"
         android:onClick="clickedPebbleWatch"
+        android:background="@drawable/circle_background"
+        android:backgroundTint="@color/icons_background_tint"
+        android:backgroundTintMode="src_in"
         />
 
     <ImageButton

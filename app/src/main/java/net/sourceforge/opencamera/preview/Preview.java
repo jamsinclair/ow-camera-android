@@ -5665,6 +5665,10 @@ public class Preview implements SurfaceHolder.Callback, TextureView.SurfaceTextu
         beepTimer.schedule(beepTimerTask = new BeepTimerTask(), 0, 1000);
     }
 
+    public void takePictureWithTimerMs(long timerDelayMs) {
+        takePictureOnTimer(timerDelayMs, false);
+    }
+
     private void flashVideo() {
         if( MyDebug.LOG )
             Log.d(TAG, "flashVideo");
