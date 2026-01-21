@@ -26,3 +26,6 @@ local.properties
 uninstall.bat
 
 .DS_Store
+
+.claude
+CLAUDE.md
