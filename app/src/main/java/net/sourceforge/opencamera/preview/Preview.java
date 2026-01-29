@@ -8356,14 +8356,19 @@ public class Preview implements SurfaceHolder.Callback, TextureView.SurfaceTextu
         }
     }
 
+    // Pebble Changes Start
+    private boolean pebblePreviewBitmapEnabled = false;
+    // Pebble Changes End
+
     public void enablePreviewBitmap(boolean use_preview_bitmap_small, boolean use_preview_bitmap_full) {
-        if( MyDebug.LOG )
-            Log.d(TAG, "enablePreviewBitmap");
         if( cameraSurface instanceof TextureView ) {
             want_preview_bitmap = true;
             this.use_preview_bitmap_small = use_preview_bitmap_small;
             this.use_preview_bitmap_full = use_preview_bitmap_full;
             recreatePreviewBitmap();
+            // Pebble Changes Start
+            pebblePreviewBitmapEnabled = true;
+            // Pebble Changes End
         }
     }
 
@@ -8374,7 +8379,16 @@ public class Preview implements SurfaceHolder.Callback, TextureView.SurfaceTextu
         want_preview_bitmap = false;
         use_preview_bitmap_small = false;
         use_preview_bitmap_full = false;
+        // Pebble Changes Start
+        pebblePreviewBitmapEnabled = false;
+        // Pebble Changes End
     }
+
+    // Pebble Changes Start
+    public boolean isPebblePreviewBitmapEnabled() {
+        return pebblePreviewBitmapEnabled;
+    }
+    // Pebble Changes End
 
     public boolean isPreviewBitmapEnabled() {
         return this.want_preview_bitmap;
@@ -8386,6 +8400,15 @@ public class Preview implements SurfaceHolder.Callback, TextureView.SurfaceTextu
 
     public boolean usePreviewBitmapFull() {
         return this.want_preview_bitmap && this.use_preview_bitmap_full;
+    }
+
+    public Bitmap getPreviewBitmap() {
+        if (this.preview_bitmap == null) {
+            Log.w(TAG, "getPreviewBitmap returned null");
+        } else {
+            Log.d(TAG, "getPreviewBitmap returned bitmap: " + preview_bitmap.getWidth() + "x" + preview_bitmap.getHeight());
+        }
+        return this.preview_bitmap;
     }
 
     public boolean refreshPreviewBitmapTaskIsRunning() {
@@ -8947,13 +8970,19 @@ public class Preview implements SurfaceHolder.Callback, TextureView.SurfaceTextu
 
             Preview preview = previewReference.get();
             if( preview == null ) {
+                if( MyDebug.LOG )
+                    Log.d(TAG, "onPostExecute: preview is null");
                 return;
             }
             Activity activity = (Activity)preview.getContext();
             if( activity == null || activity.isFinishing() ) {
+                if( MyDebug.LOG )
+                    Log.d(TAG, "onPostExecute: activity is null or finishing");
                 return;
             }
             if( result == null ) {
+                if( MyDebug.LOG )
+                    Log.d(TAG, "onPostExecute: result is null");
                 return;
             }
 
@@ -9011,6 +9040,7 @@ public class Preview implements SurfaceHolder.Callback, TextureView.SurfaceTextu
         // but the value shouldn't be too long, as then zebra stripes or focus peaking (if they are enabled) would be too jerky
         final long refresh_time = want_pre_shots ? preshot_interval_ms : (want_zebra_stripes || want_focus_peaking) ? 83 : refresh_histogram_rate_ms;
         long time_now = System.currentTimeMillis();
+
         if( want_preview_bitmap &&
                 ( ( use_preview_bitmap_small && preview_bitmap != null ) || ( use_preview_bitmap_full && preview_bitmap_full_w != -1 && preview_bitmap_full_h != -1 ) )
                 && !is_paused && !applicationInterface.isPreviewInBackground() &&

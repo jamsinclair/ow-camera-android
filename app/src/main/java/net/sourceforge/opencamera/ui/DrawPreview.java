@@ -2831,8 +2831,14 @@ public class DrawPreview {
             if( want_preview_bitmap ) {
                 preview.enablePreviewBitmap(use_preview_bitmap_small, use_preview_bitmap_full);
             }
-            else
-                preview.disablePreviewBitmap();
+            else {
+                // Pebble Changes Start
+                // Don't disable the preview bitmap if Pebble is actively using it
+                if( !preview.isPebblePreviewBitmapEnabled() ) {
+                    preview.disablePreviewBitmap();
+                }
+                // Pebble Changes End
+            }
         }
         if( want_preview_bitmap ) {
             if( want_histogram )

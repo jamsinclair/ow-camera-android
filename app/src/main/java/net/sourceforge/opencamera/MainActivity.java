@@ -167,7 +167,15 @@ public class MainActivity extends AppCompatActivity implements PreferenceFragmen
     public String pebble_picture_state = MainActivity.pebble_picture_ready;
     public static final String ACTION_PEBBLE_CAPTURE = "net.sourceforge.opencamera.PEBBLE_CAPTURE";
     public static final String EXTRA_TIMER_DURATION = "timer_duration";
+    public static final String ACTION_PEBBLE_REQUEST_FRAME = "net.sourceforge.opencamera.ACTION_PEBBLE_REQUEST_FRAME";
+    public static final String EXTRA_PEBBLE_MODEL = "pebble_model";
+    public static final String EXTRA_PEBBLE_FORMAT = "pebble_format";
+    public static final String EXTRA_PEBBLE_DITHERING = "pebble_dithering";
+    public static final String ACTION_PEBBLE_TOGGLE_CAMERA = "net.sourceforge.opencamera.ACTION_PEBBLE_TOGGLE_CAMERA";
     private android.content.BroadcastReceiver pebbleMessageReceiver;
+    private PebbleModel pebbleStreamModel = PebbleModel.BASALT;
+    private int pebbleStreamFormat = 0;  // 0 = BW 1-bit
+    private int pebbleStreamDitheringAlgorithm = 0;  // 0 = Floyd-Steinberg
     // Pebble Changes End
 
     //private boolean ui_placement_right = true;
@@ -286,10 +294,6 @@ public class MainActivity extends AppCompatActivity implements PreferenceFragmen
 
         setContentView(R.layout.activity_main);
 
-        // Pebble Changes Start
-        pebble = new PebbleHelper(androidx.lifecycle.LifecycleOwnerKt.getLifecycleScope(this));
-        // Pebble Changes End
-
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false); // initialise any unset preferences to their default values
         if( MyDebug.LOG )
             Log.d(TAG, "onCreate: time after setting default preference values: " + (System.currentTimeMillis() - debug_time));
@@ -350,6 +354,18 @@ public class MainActivity extends AppCompatActivity implements PreferenceFragmen
         soundPoolManager = new SoundPoolManager(this);
         magneticSensor = new MagneticSensor(this);
         //speechControl = new SpeechControl(this);
+
+        // Pebble Changes Start
+        String pebbleDebugDir = null;
+        String imageFolderPath = getStorageUtils().getImageFolderPath();
+        if (imageFolderPath != null) {
+            pebbleDebugDir = new File(imageFolderPath, "pebble_debug").getAbsolutePath();
+        }
+        pebble = new PebbleHelper(androidx.lifecycle.LifecycleOwnerKt.getLifecycleScope(this), this);
+        if (MyDebug.LOG && pebbleDebugDir != null) {
+            Log.d(TAG, "Pebble debug directory: " + pebbleDebugDir);
+        }
+        // Pebble Changes End
 
         // determine whether we support Camera2 API
         // must be done before setDeviceDefaults()
@@ -1567,9 +1583,30 @@ public class MainActivity extends AppCompatActivity implements PreferenceFragmen
                         }
                         takePictureFromPebble(timerDuration);
                     }
+                    else if (ACTION_PEBBLE_REQUEST_FRAME.equals(intent.getAction())) {
+                        String modelStr = intent.getStringExtra(EXTRA_PEBBLE_MODEL);
+                        int format = intent.getIntExtra(EXTRA_PEBBLE_FORMAT, 0);
+                        int dithering = intent.getIntExtra(EXTRA_PEBBLE_DITHERING, 0);
+                        if (MyDebug.LOG) {
+                            Log.d(TAG, "Received ACTION_PEBBLE_REQUEST_FRAME: model=" + modelStr + ", format=" + format + ", dithering=" + dithering);
+                        }
+                        if (modelStr != null) {
+                            sendSinglePebbleFrame(modelStr, format, dithering);
+                        } else {
+                            Log.w(TAG, "modelStr is null, cannot send preview frame");
+                        }
+                    }
+                    else if (ACTION_PEBBLE_TOGGLE_CAMERA.equals(intent.getAction())) {
+                        if (MyDebug.LOG) {
+                            Log.d(TAG, "Received ACTION_PEBBLE_TOGGLE_CAMERA");
+                        }
+                        clickedSwitchCamera(null);
+                    }
                 }
             };
             android.content.IntentFilter filter = new android.content.IntentFilter(ACTION_PEBBLE_CAPTURE);
+            filter.addAction(ACTION_PEBBLE_REQUEST_FRAME);
+            filter.addAction(ACTION_PEBBLE_TOGGLE_CAMERA);
             registerReceiver(pebbleMessageReceiver, filter, android.content.Context.RECEIVER_NOT_EXPORTED);
             if (MyDebug.LOG) {
                 Log.d(TAG, "Pebble broadcast receiver registered");
@@ -2115,6 +2152,92 @@ public class MainActivity extends AppCompatActivity implements PreferenceFragmen
         long timerDelayMs = timerDurationSeconds * 1000L;
         this.pebble_picture_state = MainActivity.pebble_picture_in_progress;
         preview.takePictureWithTimerMs(timerDelayMs);
+    }
+
+    private static final int PEBBLE_BITMAP_TIMEOUT_MS = 60000;  // 1 minute
+    private Handler pebbleBitmapTimeoutHandler;
+    private Runnable pebbleBitmapTimeoutRunnable;
+
+    private void sendSinglePebbleFrame(String modelStr) {
+        sendSinglePebbleFrame(modelStr, 0, 0);  // Default to BW 1-bit with Floyd-Steinberg
+    }
+
+    private void sendSinglePebbleFrame(String modelStr, int format, int ditheringAlgorithm) {
+        if (MyDebug.LOG) {
+            Log.d(TAG, "Sending single Pebble frame: model=" + modelStr);
+        }
+
+        // Parse model and store format/dithering options
+        pebbleStreamModel = parsePebbleModel(modelStr);
+        pebbleStreamFormat = format;
+        pebbleStreamDitheringAlgorithm = ditheringAlgorithm;
+
+        // Enable preview bitmap and keep it enabled for Pebble
+        if (!preview.usePreviewBitmapSmall() && !preview.usePreviewBitmapFull()) {
+            preview.enablePreviewBitmap(true, false);
+        }
+
+        // Reset the timeout timer - we'll disable the bitmap if no requests come in for 1 minute
+        if (pebbleBitmapTimeoutHandler == null) {
+            pebbleBitmapTimeoutHandler = new Handler(Looper.getMainLooper());
+        }
+        if (pebbleBitmapTimeoutRunnable != null) {
+            pebbleBitmapTimeoutHandler.removeCallbacks(pebbleBitmapTimeoutRunnable);
+        }
+        pebbleBitmapTimeoutRunnable = new Runnable() {
+            @Override
+            public void run() {
+                preview.disablePreviewBitmap();
+            }
+        };
+        pebbleBitmapTimeoutHandler.postDelayed(pebbleBitmapTimeoutRunnable, PEBBLE_BITMAP_TIMEOUT_MS);
+
+        // Use Handler.postDelayed to give the camera preview time to render a frame
+        // without blocking the UI thread. This allows onSurfaceTextureUpdated to fire
+        // and populate the preview bitmap while we're not blocking.
+        // Use a short delay (30ms) to grab the bitmap before it gets disabled
+        Handler handler = new Handler(Looper.getMainLooper());
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Bitmap previewBitmap = preview.getPreviewBitmap();
+                if (previewBitmap != null) {
+                    if (MyDebug.LOG) {
+                        Log.d(TAG, "Sending preview frame: " + previewBitmap.getWidth() + "x" + previewBitmap.getHeight() + ", hashCode=" + previewBitmap.hashCode());
+                    }
+                    pebble.sendPreviewFrame(previewBitmap, pebbleStreamModel, pebbleStreamFormat, pebbleStreamDitheringAlgorithm);
+                } else {
+                    Log.w(TAG, "getPreviewBitmap returned null, bitmap may have been disabled");
+                    // Retry once more after a short delay
+                    Handler retryHandler = new Handler(Looper.getMainLooper());
+                    retryHandler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            Bitmap retryBitmap = preview.getPreviewBitmap();
+                            if (retryBitmap != null) {
+                                pebble.sendPreviewFrame(retryBitmap, pebbleStreamModel, pebbleStreamFormat, pebbleStreamDitheringAlgorithm);
+                            }
+                        }
+                    }, 50);
+                }
+            }
+        }, 30);  // Short delay to grab bitmap before it gets disabled
+    }
+
+    private PebbleModel parsePebbleModel(String modelStr) {
+        switch (modelStr) {
+            case "aplite": return PebbleModel.APLITE;
+            case "basalt": return PebbleModel.BASALT;
+            case "diorite": return PebbleModel.DIORITE;
+            case "flint": return PebbleModel.FLINT;
+            case "chalk": return PebbleModel.CHALK;
+            case "emery": return PebbleModel.EMERY;
+            default:
+                if (MyDebug.LOG) {
+                    Log.w(TAG, "Unknown Pebble model: " + modelStr + ", defaulting to BASALT");
+                }
+                return PebbleModel.BASALT;
+        }
     }
     // Pebble Changes End
 
