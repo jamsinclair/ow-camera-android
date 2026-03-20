@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.graphics.Matrix
 import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
@@ -24,34 +25,63 @@ enum class PebbleModel(val width: Int, val height: Int) {
     UNKNOWN(144, 168);
 
     val aspectRatio: Float get() = width.toFloat() / height.toFloat()
+    val actionBarWidth: Int get() = if (this == CHALK) PEBBLE_ACTION_BAR_WIDTH - PEBBLE_ACTION_BAR_CHALK_BUFFER else PEBBLE_ACTION_BAR_WIDTH
+
+    companion object {
+        const val PEBBLE_ACTION_BAR_WIDTH = 30
+        const val PEBBLE_ACTION_BAR_CHALK_BUFFER = 2
+
+        @JvmStatic
+        fun fromString(modelStr: String): PebbleModel = when (modelStr) {
+            "aplite"  -> APLITE
+            "basalt"  -> BASALT
+            "diorite" -> DIORITE
+            "flint"   -> FLINT
+            "chalk"   -> CHALK
+            "emery"   -> EMERY
+            else      -> BASALT
+        }
+    }
 }
 
+
+data class ColorImageData(
+    val format: Int,
+    val palette: IntArray,
+    val chunks: List<ByteArray>
+)
 
 class PebbleImageConverter(private val context: Context? = null) {
     companion object {
         private const val TAG = "PebbleImageConverter"
-        // Height in pixels reserved for UI elements (timer bar) at bottom of Pebble screen
-        // Set to 0 to disable and use full screen height
-        private const val PEBBLE_TIMER_BAR_HEIGHT = 30
         // Dithering algorithms
         const val DITHER_FLOYD_STEINBERG = 0
         const val DITHER_BAYER_2X2 = 1
         const val DITHER_BAYER_4X4 = 2
         const val DITHER_BAYER_8X8 = 3
         const val DITHER_ATKINSON = 4
+
+        // Color format constants
+        const val FORMAT_BW_1BIT = 0
+        const val FORMAT_COLOR_4BIT = 3
     }
 
     /**
-     * Converts an Android Bitmap to Pebble-compatible pixel data
+     * Converts an Android Bitmap to Pebble-compatible 4-bit color pixel data with multi-message support
+     * Selects 16 most frequent Pebble colors from image, then dithers against actual Pebble palette for accurate error diffusion
      *
      * @param source The source bitmap from camera preview
      * @param model Target Pebble watch model
      * @param ditheringAlgorithm Dithering algorithm to use (default: Floyd-Steinberg)
-     * @return ByteArray of pixel data in Pebble ARGB format
+     * @param rotationDegrees Camera display rotation to counter-rotate the image (default: 0)
+     * @return ColorImageData with format, palette, and chunks
      */
-    fun convertBitmapToPixelData(source: Bitmap, model: PebbleModel, ditheringAlgorithm: Int = DITHER_FLOYD_STEINBERG): ByteArray {
+    fun convertBitmapToColorPixelData(source: Bitmap, model: PebbleModel, ditheringAlgorithm: Int = DITHER_FLOYD_STEINBERG, rotationDegrees: Int = 0): ColorImageData {
+        // 0. Rotate to counter display rotation if needed
+        val rotated = rotateBitmap(source, rotationDegrees)
+
         // 1. Center crop to target aspect ratio
-        val cropped = centerCrop(source, model.aspectRatio)
+        val cropped = centerCrop(rotated, model.aspectRatio)
 
         // 2. Scale to target resolution
         val scaled = Bitmap.createScaledBitmap(
@@ -61,29 +91,143 @@ class PebbleImageConverter(private val context: Context? = null) {
             true  // bilinear filtering
         )
 
-        // 3. Crop bottom for timer bar if needed
-        val timerBarCropped = if (PEBBLE_TIMER_BAR_HEIGHT > 0) {
-            val croppedHeight = model.height - PEBBLE_TIMER_BAR_HEIGHT
+        // 3. Crop right edge for action bar if needed
+        val actionBarCropped = if (model.actionBarWidth > 0) {
+            val croppedWidth = model.width - model.actionBarWidth
             Bitmap.createBitmap(
                 scaled,
                 0,
                 0,
-                model.width,
-                croppedHeight
+                croppedWidth,
+                model.height
+            )
+        } else {
+            scaled
+        }
+
+        // 4. Extract RGB pixels
+        val width = actionBarCropped.width
+        val height = actionBarCropped.height
+        val totalPixels = width * height
+        val pixels = IntArray(totalPixels)
+        actionBarCropped.getPixels(pixels, 0, width, 0, 0, width, height)
+
+        val t1 = System.currentTimeMillis()
+
+        // 5. Select 16 most frequent Pebble colors from image (histogram-based)
+        val pebblePaletteIndices = selectPebbleColorsFromImage(pixels, 16)
+
+        val t2 = System.currentTimeMillis()
+
+        // 6. Build RGB palette from selected Pebble colors for dithering
+        val rgbPalette = pebblePaletteIndices.map { index ->
+            PebbleColorPalette.PEBBLE_COLORS[index]
+        }.toIntArray()
+
+        // 7. Apply dithering against actual Pebble colors
+        val quantizedIndices = when (ditheringAlgorithm) {
+            DITHER_FLOYD_STEINBERG -> ditheringFloydSteinbergColor(pixels, width, height, rgbPalette)
+            DITHER_ATKINSON -> ditheringAtkinsonColor(pixels, width, height, rgbPalette)
+            DITHER_BAYER_2X2 -> ditheringBayerColor(pixels, width, height, rgbPalette, 2)
+            DITHER_BAYER_4X4 -> ditheringBayerColor(pixels, width, height, rgbPalette, 4)
+            DITHER_BAYER_8X8 -> ditheringBayerColor(pixels, width, height, rgbPalette, 8)
+            else -> ditheringFloydSteinbergColor(pixels, width, height, rgbPalette)  // Default
+        }
+
+        val t3 = System.currentTimeMillis()
+
+        // 8. Pack to 4-bit format (2 pixels per byte)
+        val packedPixels = packPixelsTo4Bit(quantizedIndices)
+
+        val t4 = System.currentTimeMillis()
+        val uniqueColors = quantizedIndices.toSet().size
+        Log.d(TAG, "4-bit conversion breakdown: palette=${t2-t1}ms, dither=${t3-t2}ms, pack=${t4-t3}ms, total=${t4-t1}ms, unique_colors=$uniqueColors/16")
+
+        // 9. Return all packed pixels as single chunk (compression handles chunking)
+        val chunks = listOf(packedPixels)
+
+        // 10. Cleanup temporary bitmaps
+        if (cropped != rotated) cropped.recycle()
+        if (scaled != cropped) scaled.recycle()
+        if (actionBarCropped != scaled) actionBarCropped.recycle()
+        if (rotated != source) rotated.recycle()
+
+        return ColorImageData(FORMAT_COLOR_4BIT, pebblePaletteIndices, chunks)
+    }
+
+
+/**
+     * Converts an Android Bitmap to Pebble-compatible pixel data
+     *
+     * @param source The source bitmap from camera preview
+     * @param model Target Pebble watch model
+     * @param ditheringAlgorithm Dithering algorithm to use (default: Floyd-Steinberg)
+     * @param rotationDegrees Camera display rotation to counter-rotate the image (default: 0)
+     * @return ByteArray of pixel data in Pebble ARGB format
+     */
+    fun convertBitmapToPixelData(source: Bitmap, model: PebbleModel, ditheringAlgorithm: Int = DITHER_FLOYD_STEINBERG, rotationDegrees: Int = 0): ByteArray {
+        // 0. Rotate to counter display rotation if needed
+        val rotated = rotateBitmap(source, rotationDegrees)
+
+        // 1. Center crop to target aspect ratio
+        val cropped = centerCrop(rotated, model.aspectRatio)
+
+        // 2. Scale to target resolution
+        val scaled = Bitmap.createScaledBitmap(
+            cropped,
+            model.width,
+            model.height,
+            true  // bilinear filtering
+        )
+
+        // 3. Crop right edge for action bar if needed
+        val actionBarCropped = if (model.actionBarWidth > 0) {
+            val croppedWidth = model.width - model.actionBarWidth
+            Bitmap.createBitmap(
+                scaled,
+                0,
+                0,
+                croppedWidth,
+                model.height
             )
         } else {
             scaled
         }
 
         // 4. Convert pixels to 1-bit B&W with selected dithering algorithm
-        val pixelData = convertToMonochrome(timerBarCropped, ditheringAlgorithm)
+        val pixelData = convertToMonochrome(actionBarCropped, ditheringAlgorithm)
 
         // 5. Cleanup temporary bitmaps
-        if (cropped != source) cropped.recycle()
+        if (cropped != rotated) cropped.recycle()
         if (scaled != cropped) scaled.recycle()
-        if (timerBarCropped != scaled) timerBarCropped.recycle()
+        if (actionBarCropped != scaled) actionBarCropped.recycle()
+        if (rotated != source) rotated.recycle()
 
         return pixelData
+    }
+
+    /**
+     * Rotates bitmap by specified degrees, or returns source unchanged if degrees == 0.
+     * Negative rotation values are applied as-is (convention: negative to counter-rotate display rotation).
+     */
+    private fun rotateBitmap(source: Bitmap, degrees: Int): Bitmap {
+        if (degrees == 0) {
+            return source
+        }
+
+        val matrix = Matrix().apply {
+            postRotate(-degrees.toFloat())
+        }
+
+        return Bitmap.createBitmap(
+            source,
+            0,
+            0,
+            source.width,
+            source.height,
+            matrix,
+            true
+        )
     }
 
     /**
@@ -211,6 +355,15 @@ class PebbleImageConverter(private val context: Context? = null) {
     }
 
     /**
+     * Calculate maximum error diffusion threshold based on palette size
+     * Larger palettes can tolerate larger errors without creating harsh patterns
+     * 16 colors (4-bit): ~80, 64 colors (6-bit): ~150
+     */
+    private fun getMaxErrorForPalette(paletteSize: Int): Int {
+        return (40 + paletteSize * 1.7).toInt().coerceAtMost(180)
+    }
+
+    /**
      * Get Bayer dithering matrix of specified size
      */
     private fun getBayerMatrix(size: Int): IntArray {
@@ -239,7 +392,413 @@ class PebbleImageConverter(private val context: Context? = null) {
         }
     }
 
-    private fun packPixelsToBW(pixels: BooleanArray): ByteArray {
+    /**
+     * Selects N most frequent Pebble colors from image using histogram approach
+     * Returns array of Pebble palette indices (0-63) sorted by frequency
+     * Histogram approach ensures stable palette across frames (no flickering in video)
+     *
+     * @param pixels RGB pixel array from image
+     * @param paletteSize Number of colors to select (typically 16 for 4-bit format)
+     * @return IntArray of Pebble palette indices (0-63) sorted by frequency
+     */
+    private fun selectPebbleColorsFromImage(
+        pixels: IntArray,
+        paletteSize: Int
+    ): IntArray {
+        // Build histogram of 64 Pebble colors
+        val histogram = IntArray(64)
+
+        for (pixel in pixels) {
+            val r = (pixel shr 16) and 0xFF
+            val g = (pixel shr 8) and 0xFF
+            val b = pixel and 0xFF
+
+            // Always use fast RGB distance for histogram - perceptual accuracy not critical for counting
+            val pebbleIndex = PebbleColorPalette.findNearestPebbleColor(r, g, b)
+
+            histogram[pebbleIndex]++
+        }
+
+        // Select top N most-used colors
+        return histogram.withIndex()
+            .sortedByDescending { it.value }
+            .take(paletteSize)
+            .map { it.index }
+            .toIntArray()
+    }
+
+    /**
+     * Median cut algorithm - recursively divides color space to find representative colors
+     */
+    private fun medianCut(colors: List<Int>, targetBoxCount: Int): List<ColorBox> {
+        val boxes = mutableListOf(ColorBox(colors.toMutableList()))
+
+        while (boxes.size < targetBoxCount && boxes.any { it.colors.size > 1 }) {
+            // Find box with largest range
+            val boxToSplit = boxes.withIndex()
+                .maxByOrNull { (_, box) -> box.largestRange() }
+                ?.value
+                ?: break
+
+            val (box1, box2) = boxToSplit.splitAtMedian()
+            boxes.remove(boxToSplit)
+            boxes.add(box1)
+            boxes.add(box2)
+        }
+
+        return boxes
+    }
+
+    /**
+     * Represents a box of colors in RGB space
+     */
+    private data class ColorBox(val colors: MutableList<Int>) {
+        fun largestRange(): Int {
+            if (colors.isEmpty()) return 0
+
+            var minR = 255
+            var maxR = 0
+            var minG = 255
+            var maxG = 0
+            var minB = 255
+            var maxB = 0
+
+            for (color in colors) {
+                val r = (color shr 16) and 0xFF
+                val g = (color shr 8) and 0xFF
+                val b = color and 0xFF
+
+                minR = minOf(minR, r)
+                maxR = maxOf(maxR, r)
+                minG = minOf(minG, g)
+                maxG = maxOf(maxG, g)
+                minB = minOf(minB, b)
+                maxB = maxOf(maxB, b)
+            }
+
+            val rangeR = maxR - minR
+            val rangeG = maxG - minG
+            val rangeB = maxB - minB
+
+            return maxOf(rangeR, rangeG, rangeB)
+        }
+
+        fun splitAtMedian(): Pair<ColorBox, ColorBox> {
+            if (colors.isEmpty()) return Pair(ColorBox(mutableListOf()), ColorBox(mutableListOf()))
+
+            var minR = 255
+            var maxR = 0
+            var minG = 255
+            var maxG = 0
+            var minB = 255
+            var maxB = 0
+
+            for (color in colors) {
+                val r = (color shr 16) and 0xFF
+                val g = (color shr 8) and 0xFF
+                val b = color and 0xFF
+
+                minR = minOf(minR, r)
+                maxR = maxOf(maxR, r)
+                minG = minOf(minG, g)
+                maxG = maxOf(maxG, g)
+                minB = minOf(minB, b)
+                maxB = maxOf(maxB, b)
+            }
+
+            val rangeR = maxR - minR
+            val rangeG = maxG - minG
+            val rangeB = maxB - minB
+
+            // Sort by axis with largest range
+            when (maxOf(rangeR, rangeG, rangeB)) {
+                rangeR -> colors.sortBy { (it shr 16) and 0xFF }
+                rangeG -> colors.sortBy { (it shr 8) and 0xFF }
+                else -> colors.sortBy { it and 0xFF }
+            }
+
+            val mid = colors.size / 2
+            val box1Colors = colors.subList(0, mid).toMutableList()
+            val box2Colors = colors.subList(mid, colors.size).toMutableList()
+
+            return Pair(ColorBox(box1Colors), ColorBox(box2Colors))
+        }
+
+        fun averageColor(): Int {
+            if (colors.isEmpty()) return 0
+
+            var sumR = 0
+            var sumG = 0
+            var sumB = 0
+
+            for (color in colors) {
+                sumR += (color shr 16) and 0xFF
+                sumG += (color shr 8) and 0xFF
+                sumB += color and 0xFF
+            }
+
+            val count = colors.size
+            val avgR = sumR / count
+            val avgG = sumG / count
+            val avgB = sumB / count
+
+            return (avgR shl 16) or (avgG shl 8) or avgB
+        }
+    }
+
+    /**
+     * Floyd-Steinberg dithering with color quantization
+     */
+    private fun ditheringFloydSteinbergColor(
+        pixels: IntArray,
+        width: Int,
+        height: Int,
+        palette: IntArray
+    ): IntArray {
+        val ditherLevel = 0.85
+        val maxError = getMaxErrorForPalette(palette.size)
+        val scaledDitherLevel = (1.0 - Math.pow(1.0 - ditherLevel, 2.0)) * (15.0 / 16.0)
+
+        val quantizedIndices = IntArray(pixels.size)
+        val workingPixels = pixels.copyOf()
+
+        // Create RGB error buffers
+        val errorR = IntArray(pixels.size)
+        val errorG = IntArray(pixels.size)
+        val errorB = IntArray(pixels.size)
+
+        for (y in 0 until height) {
+            for (x in 0 until width) {
+                val index = y * width + x
+
+                // Get current pixel with accumulated error
+                val pixel = workingPixels[index]
+                var r = (pixel shr 16) and 0xFF
+                var g = (pixel shr 8) and 0xFF
+                var b = pixel and 0xFF
+
+                r = (r + errorR[index]).coerceIn(0, 255)
+                g = (g + errorG[index]).coerceIn(0, 255)
+                b = (b + errorB[index]).coerceIn(0, 255)
+
+                // Find nearest palette color
+                var nearestIndex = 0
+                var minDist = Int.MAX_VALUE
+                for (i in palette.indices) {
+                    val pr = (palette[i] shr 16) and 0xFF
+                    val pg = (palette[i] shr 8) and 0xFF
+                    val pb = palette[i] and 0xFF
+                    val dist = (r - pr) * (r - pr) + (g - pg) * (g - pg) + (b - pb) * (b - pb)
+                    if (dist < minDist) {
+                        minDist = dist
+                        nearestIndex = i
+                    }
+                }
+
+                quantizedIndices[index] = nearestIndex
+
+                // Calculate error
+                val paletteColor = palette[nearestIndex]
+                val pr = (paletteColor shr 16) and 0xFF
+                val pg = (paletteColor shr 8) and 0xFF
+                val pb = paletteColor and 0xFF
+
+                var errR = r - pr
+                var errG = g - pg
+                var errB = b - pb
+
+                // Cap maximum error based on palette quality
+                errR = errR.coerceIn(-maxError, maxError)
+                errG = errG.coerceIn(-maxError, maxError)
+                errB = errB.coerceIn(-maxError, maxError)
+
+                // Apply non-linear dither level scaling and distribute error
+                if (x + 1 < width) {
+                    val nextIndex = index + 1
+                    errorR[nextIndex] = (errorR[nextIndex] + (errR * 7 / 16 * scaledDitherLevel).toInt()).coerceIn(-255, 255)
+                    errorG[nextIndex] = (errorG[nextIndex] + (errG * 7 / 16 * scaledDitherLevel).toInt()).coerceIn(-255, 255)
+                    errorB[nextIndex] = (errorB[nextIndex] + (errB * 7 / 16 * scaledDitherLevel).toInt()).coerceIn(-255, 255)
+                }
+
+                if (y + 1 < height) {
+                    if (x - 1 >= 0) {
+                        val nextIndex = index + width - 1
+                        errorR[nextIndex] = (errorR[nextIndex] + (errR * 3 / 16 * scaledDitherLevel).toInt()).coerceIn(-255, 255)
+                        errorG[nextIndex] = (errorG[nextIndex] + (errG * 3 / 16 * scaledDitherLevel).toInt()).coerceIn(-255, 255)
+                        errorB[nextIndex] = (errorB[nextIndex] + (errB * 3 / 16 * scaledDitherLevel).toInt()).coerceIn(-255, 255)
+                    }
+                    val nextIndex = index + width
+                    errorR[nextIndex] = (errorR[nextIndex] + (errR * 5 / 16 * scaledDitherLevel).toInt()).coerceIn(-255, 255)
+                    errorG[nextIndex] = (errorG[nextIndex] + (errG * 5 / 16 * scaledDitherLevel).toInt()).coerceIn(-255, 255)
+                    errorB[nextIndex] = (errorB[nextIndex] + (errB * 5 / 16 * scaledDitherLevel).toInt()).coerceIn(-255, 255)
+
+                    if (x + 1 < width) {
+                        val nextIndex = index + width + 1
+                        errorR[nextIndex] = (errorR[nextIndex] + (errR / 16 * scaledDitherLevel).toInt()).coerceIn(-255, 255)
+                        errorG[nextIndex] = (errorG[nextIndex] + (errG / 16 * scaledDitherLevel).toInt()).coerceIn(-255, 255)
+                        errorB[nextIndex] = (errorB[nextIndex] + (errB / 16 * scaledDitherLevel).toInt()).coerceIn(-255, 255)
+                    }
+                }
+            }
+        }
+
+        return quantizedIndices
+    }
+
+    /**
+     * Atkinson dithering with color quantization
+     */
+    private fun ditheringAtkinsonColor(
+        pixels: IntArray,
+        width: Int,
+        height: Int,
+        palette: IntArray
+    ): IntArray {
+        val ditherLevel = 0.85
+        val maxError = getMaxErrorForPalette(palette.size)
+        val scaledDitherLevel = (1.0 - Math.pow(1.0 - ditherLevel, 2.0)) * (15.0 / 16.0)
+
+        val quantizedIndices = IntArray(pixels.size)
+        val errorR = IntArray(pixels.size)
+        val errorG = IntArray(pixels.size)
+        val errorB = IntArray(pixels.size)
+
+        for (y in 0 until height) {
+            for (x in 0 until width) {
+                val index = y * width + x
+
+                // Get current pixel with error
+                val pixel = pixels[index]
+                var r = ((pixel shr 16) and 0xFF) + errorR[index]
+                var g = ((pixel shr 8) and 0xFF) + errorG[index]
+                var b = (pixel and 0xFF) + errorB[index]
+
+                r = r.coerceIn(0, 255)
+                g = g.coerceIn(0, 255)
+                b = b.coerceIn(0, 255)
+
+                // Find nearest palette color
+                var nearestIndex = 0
+                var minDist = Int.MAX_VALUE
+                for (i in palette.indices) {
+                    val pr = (palette[i] shr 16) and 0xFF
+                    val pg = (palette[i] shr 8) and 0xFF
+                    val pb = palette[i] and 0xFF
+                    val dist = (r - pr) * (r - pr) + (g - pg) * (g - pg) + (b - pb) * (b - pb)
+                    if (dist < minDist) {
+                        minDist = dist
+                        nearestIndex = i
+                    }
+                }
+
+                quantizedIndices[index] = nearestIndex
+
+                // Calculate error
+                val paletteColor = palette[nearestIndex]
+                val pr = (paletteColor shr 16) and 0xFF
+                val pg = (paletteColor shr 8) and 0xFF
+                val pb = paletteColor and 0xFF
+
+                var errR = (r - pr) / 8
+                var errG = (g - pg) / 8
+                var errB = (b - pb) / 8
+
+                // Cap maximum error based on palette quality
+                errR = errR.coerceIn(-maxError, maxError)
+                errG = errG.coerceIn(-maxError, maxError)
+                errB = errB.coerceIn(-maxError, maxError)
+
+                // Distribute to 6 neighbors, 1/8 each, with scaled dither level
+                val neighbors = listOf(
+                    x + 1 to y,
+                    x + 2 to y,
+                    x - 1 to (y + 1),
+                    x to (y + 1),
+                    x + 1 to (y + 1),
+                    x to (y + 2)
+                )
+
+                for ((nx, ny) in neighbors) {
+                    if (nx >= 0 && nx < width && ny >= 0 && ny < height) {
+                        val neighborIndex = ny * width + nx
+                        errorR[neighborIndex] = (errorR[neighborIndex] + (errR * scaledDitherLevel).toInt()).coerceIn(-255, 255)
+                        errorG[neighborIndex] = (errorG[neighborIndex] + (errG * scaledDitherLevel).toInt()).coerceIn(-255, 255)
+                        errorB[neighborIndex] = (errorB[neighborIndex] + (errB * scaledDitherLevel).toInt()).coerceIn(-255, 255)
+                    }
+                }
+            }
+        }
+
+        return quantizedIndices
+    }
+
+    /**
+     * Bayer ordered dithering with color quantization
+     */
+    private fun ditheringBayerColor(
+        pixels: IntArray,
+        width: Int,
+        height: Int,
+        palette: IntArray,
+        matrixSize: Int
+    ): IntArray {
+        val quantizedIndices = IntArray(pixels.size)
+        val matrix = getBayerMatrix(matrixSize)
+
+        for (y in 0 until height) {
+            for (x in 0 until width) {
+                val index = y * width + x
+                val pixel = pixels[index]
+
+                var r = (pixel shr 16) and 0xFF
+                var g = (pixel shr 8) and 0xFF
+                var b = pixel and 0xFF
+
+                // Apply dithering threshold based on matrix
+                val matrixValue = matrix[(y % matrixSize) * matrixSize + (x % matrixSize)]
+
+                r = if (r > matrixValue) 255 else 0
+                g = if (g > matrixValue) 255 else 0
+                b = if (b > matrixValue) 255 else 0
+
+                // Find nearest palette color
+                var nearestIndex = 0
+                var minDist = Int.MAX_VALUE
+                for (i in palette.indices) {
+                    val pr = (palette[i] shr 16) and 0xFF
+                    val pg = (palette[i] shr 8) and 0xFF
+                    val pb = palette[i] and 0xFF
+                    val dist = (r - pr) * (r - pr) + (g - pg) * (g - pg) + (b - pb) * (b - pb)
+                    if (dist < minDist) {
+                        minDist = dist
+                        nearestIndex = i
+                    }
+                }
+
+                quantizedIndices[index] = nearestIndex
+            }
+        }
+
+        return quantizedIndices
+    }
+
+    /**
+     * Pack 4-bit palette indices into bytes (2 pixels per byte, MSB→LSB)
+     */
+    private fun packPixelsTo4Bit(indices: IntArray): ByteArray {
+        val byteCount = (indices.size + 1) / 2
+        val packed = ByteArray(byteCount)
+
+        for (i in indices.indices) {
+            val byteIndex = i / 2
+            val bitShift = if (i % 2 == 0) 4 else 0  // First pixel high nibble (4), second pixel low nibble (0)
+            packed[byteIndex] = (packed[byteIndex].toInt() or ((indices[i] and 0x0F) shl bitShift)).toByte()
+        }
+
+        return packed
+    }
+
+private fun packPixelsToBW(pixels: BooleanArray): ByteArray {
         val byteCount = (pixels.size + 7) / 8
         val packed = ByteArray(byteCount)
 
@@ -283,6 +842,34 @@ class PebbleImageConverter(private val context: Context? = null) {
         val packed = packPixelsToBW(bwPixels)
 
         return packed
+    }
+
+    /**
+     * Unpack 4-bit color palette indices from packed chunks for debug visualization
+     */
+    fun unpackColorPixels(chunks: List<ByteArray>, width: Int, height: Int): IntArray {
+        val totalPixels = width * height
+        val indices = IntArray(totalPixels)
+        var pixelIndex = 0
+
+        for (chunk in chunks) {
+            for (byte in chunk) {
+                if (pixelIndex >= totalPixels) break
+
+                // Extract high nibble (first pixel)
+                if (pixelIndex < totalPixels) {
+                    indices[pixelIndex++] = ((byte.toInt() shr 4) and 0x0F)
+                }
+
+                // Extract low nibble (second pixel)
+                if (pixelIndex < totalPixels) {
+                    indices[pixelIndex++] = (byte.toInt() and 0x0F)
+                }
+            }
+            if (pixelIndex >= totalPixels) break
+        }
+
+        return indices
     }
 
 }
