@@ -1092,6 +1092,11 @@ public class Preview implements SurfaceHolder.Callback, TextureView.SurfaceTextu
         this.textureview_w = width;
         this.textureview_h = height;
         mySurfaceCreated();
+        // Pebble Changes Start - Create preview bitmap if it was requested before texture became available
+        if( want_preview_bitmap ) {
+            recreatePreviewBitmap();
+        }
+        // Pebble Changes End
     }
 
     @Override
@@ -5653,16 +5658,19 @@ public class Preview implements SurfaceHolder.Callback, TextureView.SurfaceTextu
 		}*/
         takePictureTimer.schedule(takePictureTimerTask = new TakePictureTimerTask(), timer_delay);
 
-        class BeepTimerTask extends TimerTask {
-            private long remaining_time = timer_delay;
-            public void run() {
-                if( remaining_time > 0 ) { // check in case this isn't cancelled by time we take the photo
-                    applicationInterface.timerBeep(remaining_time);
+        // Only schedule beep timer if there's an actual timer duration
+        if( timer_delay > 0 ) {
+            class BeepTimerTask extends TimerTask {
+                private long remaining_time = timer_delay;
+                public void run() {
+                    if( remaining_time > 0 ) { // check in case this isn't cancelled by time we take the photo
+                        applicationInterface.timerBeep(remaining_time);
+                    }
+                    remaining_time -= 1000;
                 }
-                remaining_time -= 1000;
             }
+            beepTimer.schedule(beepTimerTask = new BeepTimerTask(), 0, 1000);
         }
-        beepTimer.schedule(beepTimerTask = new BeepTimerTask(), 0, 1000);
     }
 
     public void takePictureWithTimerMs(long timerDelayMs) {
@@ -8356,14 +8364,28 @@ public class Preview implements SurfaceHolder.Callback, TextureView.SurfaceTextu
         }
     }
 
+    // Pebble Changes Start
+    private boolean pebblePreviewBitmapEnabled = false;
+    // Pebble Changes End
+
     public void enablePreviewBitmap(boolean use_preview_bitmap_small, boolean use_preview_bitmap_full) {
         if( MyDebug.LOG )
-            Log.d(TAG, "enablePreviewBitmap");
+            Log.d(TAG, "enablePreviewBitmap called: use_preview_bitmap_small=" + use_preview_bitmap_small + ", use_preview_bitmap_full=" + use_preview_bitmap_full + ", cameraSurface type=" + (cameraSurface != null ? cameraSurface.getClass().getSimpleName() : "null"));
         if( cameraSurface instanceof TextureView ) {
             want_preview_bitmap = true;
             this.use_preview_bitmap_small = use_preview_bitmap_small;
             this.use_preview_bitmap_full = use_preview_bitmap_full;
+            // Pebble Changes Start
+            pebblePreviewBitmapEnabled = true;
+            if( MyDebug.LOG )
+                Log.d(TAG, "enablePreviewBitmap: successfully enabled for TextureView, want_preview_bitmap=" + want_preview_bitmap);
+            // Create the preview bitmap immediately if it doesn't exist yet
             recreatePreviewBitmap();
+            // Pebble Changes End
+        }
+        else {
+            if( MyDebug.LOG )
+                Log.w(TAG, "enablePreviewBitmap: FAILED - cameraSurface is not a TextureView, is " + (cameraSurface != null ? cameraSurface.getClass().getSimpleName() : "null"));
         }
     }
 
@@ -8374,7 +8396,16 @@ public class Preview implements SurfaceHolder.Callback, TextureView.SurfaceTextu
         want_preview_bitmap = false;
         use_preview_bitmap_small = false;
         use_preview_bitmap_full = false;
+        // Pebble Changes Start
+        pebblePreviewBitmapEnabled = false;
+        // Pebble Changes End
     }
+
+    // Pebble Changes Start
+    public boolean isPebblePreviewBitmapEnabled() {
+        return pebblePreviewBitmapEnabled;
+    }
+    // Pebble Changes End
 
     public boolean isPreviewBitmapEnabled() {
         return this.want_preview_bitmap;
@@ -8386,6 +8417,15 @@ public class Preview implements SurfaceHolder.Callback, TextureView.SurfaceTextu
 
     public boolean usePreviewBitmapFull() {
         return this.want_preview_bitmap && this.use_preview_bitmap_full;
+    }
+
+    public Bitmap getPreviewBitmap() {
+        if (this.preview_bitmap == null && MyDebug.LOG) {
+            Log.w(TAG, "getPreviewBitmap returned null");
+        } else if (MyDebug.LOG) {
+            Log.d(TAG, "getPreviewBitmap returned bitmap: " + preview_bitmap.getWidth() + "x" + preview_bitmap.getHeight());
+        }
+        return this.preview_bitmap;
     }
 
     public boolean refreshPreviewBitmapTaskIsRunning() {
@@ -8947,13 +8987,19 @@ public class Preview implements SurfaceHolder.Callback, TextureView.SurfaceTextu
 
             Preview preview = previewReference.get();
             if( preview == null ) {
+                if( MyDebug.LOG )
+                    Log.d(TAG, "onPostExecute: preview is null");
                 return;
             }
             Activity activity = (Activity)preview.getContext();
             if( activity == null || activity.isFinishing() ) {
+                if( MyDebug.LOG )
+                    Log.d(TAG, "onPostExecute: activity is null or finishing");
                 return;
             }
             if( result == null ) {
+                if( MyDebug.LOG )
+                    Log.d(TAG, "onPostExecute: result is null");
                 return;
             }
 
@@ -9011,6 +9057,7 @@ public class Preview implements SurfaceHolder.Callback, TextureView.SurfaceTextu
         // but the value shouldn't be too long, as then zebra stripes or focus peaking (if they are enabled) would be too jerky
         final long refresh_time = want_pre_shots ? preshot_interval_ms : (want_zebra_stripes || want_focus_peaking) ? 83 : refresh_histogram_rate_ms;
         long time_now = System.currentTimeMillis();
+
         if( want_preview_bitmap &&
                 ( ( use_preview_bitmap_small && preview_bitmap != null ) || ( use_preview_bitmap_full && preview_bitmap_full_w != -1 && preview_bitmap_full_h != -1 ) )
                 && !is_paused && !applicationInterface.isPreviewInBackground() &&

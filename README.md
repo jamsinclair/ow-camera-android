@@ -2,7 +2,7 @@
 
 OW Camera 2 for Pebble is a fork of the Open Camera app, which specfically adds support for remote shutter control via Pebble smartwatches. This the successor to my previous OW Camera for Pebble app, which is no longer available on the Google Play Store. It is using the latest Pebblekit SDK that is still a work-in-progress, [pebble-dev/PebbleKitAndroid2](https://github.com/pebble-dev/PebbleKitAndroid2).
 
-The rest of the app is mostly unchanged from Open Camera, with some minor tweaks to the user interface and strings.
+The rest of the app is mostly unchanged from Open Camera, with additional background logic for sending preview images and some minor tweaks to the user interface and strings.
 
 There are three branches I am maintaining:
 - [master](https://github.com/jamsinclair/ow-camera-android/tree/master): Unchanged and will be kept in sync with Open Camera releases.

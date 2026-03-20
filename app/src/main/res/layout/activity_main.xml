@@ -638,5 +638,17 @@
         android:visibility="gone"
         android:importantForAccessibility="no"
         />
-    
+
+    <!-- Pebble debug preview overlay - positioned in top right -->
+    <net.sourceforge.opencamera.PebbleDebugPreviewOverlay
+        android:id="@+id/pebble_debug_overlay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="120dp"
+        android:layout_marginRight="20dp"
+        android:visibility="gone"
+        />
+
 </RelativeLayout>

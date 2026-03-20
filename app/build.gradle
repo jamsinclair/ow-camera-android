@@ -39,6 +39,7 @@ android {
 }
 
 repositories {
+    mavenCentral()
     maven { url = uri("https://jitpack.io") }
 }
 
@@ -60,7 +61,7 @@ dependencies {
 
     implementation 'androidx.exifinterface:exifinterface:1.4.1'
 
-    implementation("com.github.pebble-dev.PebbleKitAndroid2:client:3dea822ae9")
+    implementation 'com.github.pebble-dev.PebbleKitAndroid2:client:3dea822ae9'
 
     testImplementation 'junit:junit:4.13.2'
 
