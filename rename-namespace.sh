@@ -5,6 +5,7 @@ export LANG=C
 
 find ./app/src/main/java -type f -print0 | xargs -0 sed -i '' 's/net.sourceforge.opencamera/com.github.jamsinclair.owcamera2/g'
 find ./app/src/main/kotlin -type f -print0 | xargs -0 sed -i '' 's/net.sourceforge.opencamera/com.github.jamsinclair.owcamera2/g'
+find ./app/src/main/res -type f -print0 | xargs -0 sed -i '' 's/net.sourceforge.opencamera/com.github.jamsinclair.owcamera2/g'
 find ./app/src/main/java -type f -print0 | xargs -0 sed -i '' 's/Open Camera/OW Camera 2 for Pebble/g'
 find ./app/src/main/res/values* -type f -print0 | xargs -0 sed -i '' 's/Open Camera/OW Camera 2 for Pebble/g'
 
