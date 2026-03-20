@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Open Camera</string> <!-- shouldn't be translated, unless deemed appropriate e.g. alternative alphabets -->
+    <string name="app_name">OW Camera 2 for Pebble</string> <!-- shouldn't be translated, unless deemed appropriate e.g. alternative alphabets -->
     <string name="action_settings">Nastavitve</string>
     <string name="action_popup">Nastavitve pojavnih oken</string>
     <string name="intro_ok">V redu (to sporočilo se ne bo več prikazovalo)</string>
@@ -119,7 +119,7 @@
     <string name="preference_save_video_prefix_summary">Predpona imena datotek videoposnetkov</string>
 	<string name="preference_save_zulu_time">Oblika časa za ime datoteke</string>
     <string name="preference_show_when_locked">Prikaži fotoaparat, ko je zaklenjeno</string>
-    <string name="preference_show_when_locked_summary">Če je omogočeno, se bo Open Camera še vedno prikazoval nad zaklenjenim zaslonom (še vedno boste morali odkleniti za dostop do nastavitev, galerije itd.)</string>
+    <string name="preference_show_when_locked_summary">Če je omogočeno, se bo OW Camera 2 for Pebble še vedno prikazoval nad zaklenjenim zaslonom (še vedno boste morali odkleniti za dostop do nastavitev, galerije itd.)</string>
     <string name="preference_startup_focus">Izvedi samodejno ostrenje ob zagonu</string>
     <string name="preference_startup_focus_summary">Ali naj se izvede samodejno ostrenje ob zagonu Open Camere.  Če imate težavo z vklopom bliskavice ob zagonu, onemogočite to možnost</string>
     <string name="preference_lock_video">Zakleni zaslon ob snemanju videoposnetkov</string>
@@ -222,14 +222,14 @@
     
     <string name="preference_category_online">Razno</string>
     <string name="preference_online_help">Spletna pomoč</string>
-    <string name="preference_online_help_summary">Zaženi spletno stran Open Camera v brskalniku</string>
+    <string name="preference_online_help_summary">Zaženi spletno stran OW Camera 2 for Pebble v brskalniku</string>
     <string name="preference_use_camera2">Uporabi API Camera2</string>
     <string name="preference_use_camera2_summary">Omogoči dodatne značilnosti, kot so ročni načini za osvetlitev, ostrino, ravnovesje beline, kot tudi obliko RAW (če jo naprava podpira), vendar morda ne bo pravilno delovala na vseh napravah (lahko povzročijo ponovni zagon)</string>
     <string name="preference_about">O programu</string>
     <string name="preference_about_summary">Program in podatki za razhroščevanje</string>
     <string name="preference_reset">Ponastavi nastavitve</string>
-    <string name="preference_reset_summary">Ponastavi vse nastavitve Open Camera na privzete</string>
-    <string name="preference_reset_question">Ali res želite ponastaviti vse nastavitve Open Camera na privzete?</string>
+    <string name="preference_reset_summary">Ponastavi vse nastavitve OW Camera 2 for Pebble na privzete</string>
+    <string name="preference_reset_question">Ali res želite ponastaviti vse nastavitve OW Camera 2 for Pebble na privzete?</string>
 
     <string name="about_available">Na voljo</string>
     <string name="about_not_available">Ni na voljo</string>

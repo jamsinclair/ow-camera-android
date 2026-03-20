@@ -28,7 +28,7 @@
         android:defaultValue="preference_save_preshots_off"
         />
 
-    <net.sourceforge.opencamera.ui.ArraySeekBarPreference
+    <com.github.jamsinclair.owcamera2.ui.ArraySeekBarPreference
         android:key="preference_quality"
         android:title="@string/preference_quality"
         android:summary="@string/preference_quality_summary"
@@ -173,7 +173,7 @@
         >
 
         <!--suppress AndroidDomInspection --> <!-- stop lint complaining about empty defaultValue -->
-        <net.sourceforge.opencamera.ui.MyEditTextPreference
+        <com.github.jamsinclair.owcamera2.ui.MyEditTextPreference
             android:key="preference_exif_artist"
             android:title="@string/preference_exif_artist"
             android:summary="@string/preference_exif_artist_summary"
@@ -183,7 +183,7 @@
             />
 
         <!--suppress AndroidDomInspection --> <!-- stop lint complaining about empty defaultValue -->
-        <net.sourceforge.opencamera.ui.MyEditTextPreference
+        <com.github.jamsinclair.owcamera2.ui.MyEditTextPreference
             android:key="preference_exif_copyright"
             android:title="@string/preference_exif_copyright"
             android:summary="@string/preference_exif_copyright_summary"
@@ -246,7 +246,7 @@
             />
 
         <!--suppress AndroidDomInspection --> <!-- stop lint complaining about empty defaultValue -->
-        <net.sourceforge.opencamera.ui.MyEditTextPreference
+        <com.github.jamsinclair.owcamera2.ui.MyEditTextPreference
             android:key="preference_textstamp"
             android:title="@string/preference_textstamp"
             android:summary="@string/preference_textstamp_summary"
@@ -255,7 +255,7 @@
             android:defaultValue=""
             />
 
-        <net.sourceforge.opencamera.ui.ArraySeekBarPreference
+        <com.github.jamsinclair.owcamera2.ui.ArraySeekBarPreference
             android:key="preference_stamp_fontsize"
             android:title="@string/preference_stamp_fontsize"
             android:summary="@string/preference_stamp_fontsize_summary"

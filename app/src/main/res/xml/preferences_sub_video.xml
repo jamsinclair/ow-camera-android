@@ -37,7 +37,7 @@
         />
 
     <!--  if we move this to another PreferenceGroup, we should update code for the findPreference() call -->
-    <net.sourceforge.opencamera.ui.ArraySeekBarPreference
+    <com.github.jamsinclair.owcamera2.ui.ArraySeekBarPreference
         android:key="preference_video_profile_gamma"
         android:title="@string/preference_video_profile_gamma"
         android:summary="@string/preference_video_profile_gamma_summary"

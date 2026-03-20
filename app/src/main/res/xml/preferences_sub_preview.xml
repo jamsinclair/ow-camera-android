@@ -20,7 +20,7 @@
         android:defaultValue="preference_ghost_image_off"
         />
 
-    <net.sourceforge.opencamera.ui.ArraySeekBarPreference
+    <com.github.jamsinclair.owcamera2.ui.ArraySeekBarPreference
         android:key="ghost_image_alpha"
         android:title="@string/preference_ghost_image_alpha"
         android:summary="@string/preference_ghost_image_alpha_summary"

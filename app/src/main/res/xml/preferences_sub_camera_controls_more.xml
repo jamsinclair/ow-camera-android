@@ -60,7 +60,7 @@
         android:defaultValue="none"
         />
 
-    <net.sourceforge.opencamera.ui.ArraySeekBarPreference
+    <com.github.jamsinclair.owcamera2.ui.ArraySeekBarPreference
         android:key="preference_audio_noise_control_sensitivity"
         android:title="@string/preference_audio_noise_control_sensitivity"
         android:summary="@string/preference_audio_noise_control_sensitivity_summary"
@@ -75,7 +75,7 @@
         android:title="@string/preference_screen_remote_control"
         android:icon="@drawable/ic_more_horiz_white_48dp"
         android:persistent="false"
-        android:fragment="net.sourceforge.opencamera.PreferenceSubRemoteCtrl"
+        android:fragment="com.github.jamsinclair.owcamera2.PreferenceSubRemoteCtrl"
         />
 
     <ListPreference
@@ -109,7 +109,7 @@
         />
 
     <!-- if the default value changes, remember to update code in MyPreferenceFragment.setSummary() -->
-    <net.sourceforge.opencamera.ui.MyEditTextPreference
+    <com.github.jamsinclair.owcamera2.ui.MyEditTextPreference
         android:key="preference_save_photo_prefix"
         android:title="@string/preference_save_photo_prefix"
         android:summary="@string/preference_save_photo_prefix_summary"
@@ -119,7 +119,7 @@
         />
 
     <!-- if the default value changes, remember to update code in MyPreferenceFragment.setSummary() -->
-    <net.sourceforge.opencamera.ui.MyEditTextPreference
+    <com.github.jamsinclair.owcamera2.ui.MyEditTextPreference
         android:key="preference_save_video_prefix"
         android:title="@string/preference_save_video_prefix"
         android:summary="@string/preference_save_video_prefix_summary"

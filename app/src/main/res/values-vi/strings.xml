@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Open Camera</string> <!-- shouldn't be translated -->
+    <string name="app_name">OW Camera 2 for Pebble</string> <!-- shouldn't be translated -->
     <string name="action_settings">Cài đặt</string>
     <string name="action_popup">Cài đặt cửa sổ bật lên</string>
     <string name="intro_ok">OK (Thông báo này không hiển thị nữa)</string>
@@ -118,9 +118,9 @@
     <string name="preference_save_video_prefix_summary">Đặt tiền tố trong tên tệp khi lưu video</string>
     <string name="preference_save_zulu_time">Định dạng thời gian tên tệp</string>
     <string name="preference_show_when_locked">Hiển thị máy ảnh khi đã khóa</string>
-    <string name="preference_show_when_locked_summary">Nếu kích hoạt, Open Camera vẫn hiển thị trên bất kỳ màn hình khóa nào (bạn vẫn phải mở khóa để truy cập Cài đặt, Thư viện, v.v…)</string>
+    <string name="preference_show_when_locked_summary">Nếu kích hoạt, OW Camera 2 for Pebble vẫn hiển thị trên bất kỳ màn hình khóa nào (bạn vẫn phải mở khóa để truy cập Cài đặt, Thư viện, v.v…)</string>
     <string name="preference_startup_focus">Tự động lấy nét khi khởi động</string>
-    <string name="preference_startup_focus_summary">Tự động lấy nét khi Open Camera được khởi động. Nếu bạn gặp sự cố bật đèn flash khi khởi động, hãy tắt tùy chọn này.</string>
+    <string name="preference_startup_focus_summary">Tự động lấy nét khi OW Camera 2 for Pebble được khởi động. Nếu bạn gặp sự cố bật đèn flash khi khởi động, hãy tắt tùy chọn này.</string>
     <string name="preference_lock_video">Khóa màn hình khi quay video</string>
     <string name="preference_lock_video_summary">Khi quay video, giao diện người dùng sẽ bị khóa để ngăn việc vô tình dừng quay. Trượt màn hình để mở khóa. Lưu ý video sẽ dừng quay nếu ứng dụng chạy dưới nền hoặc màn hình bị trống.</string>
     <string name="preference_rotate_preview">Xoay xem trước</string>
@@ -160,7 +160,7 @@
     <string name="preference_take_photo_border">Hiển thị đường viền</string>
     <string name="preference_take_photo_border_summary">Hiện đường viền trên màn hình khi chụp ảnh</string>
     <string name="preference_keep_display_on">Giữ màn hình bật</string>
-    <string name="preference_keep_display_on_summary">Nếu kích hoạt, màn hình sẽ không tắt khi Giao diện người dùng chính của Open Camera đang hoạt động</string>
+    <string name="preference_keep_display_on_summary">Nếu kích hoạt, màn hình sẽ không tắt khi Giao diện người dùng chính của OW Camera 2 for Pebble đang hoạt động</string>
     <string name="preference_max_brightness">Buộc độ sáng tối đa</string>
     <string name="preference_max_brightness_summary">Bắt buộc màn hình hiển thị ở độ sáng tối đa, thay vì mặc định của thiết bị</string>
     
@@ -221,14 +221,14 @@
     
     <string name="preference_category_online">Xem thêm</string>
     <string name="preference_online_help">Trợ giúp trực tuyến</string>
-    <string name="preference_online_help_summary">Truy cập trang chủ Open Camera bằng trình duyệt của bạn</string>
+    <string name="preference_online_help_summary">Truy cập trang chủ OW Camera 2 for Pebble bằng trình duyệt của bạn</string>
     <string name="preference_use_camera2">Sử dụng Camera2 API</string>
     <string name="preference_use_camera2_summary">Kích hoạt các tính năng bổ sung như chế độ thủ công với các tùy chọn phơi sáng, lấy nét, cân bằng trắng và lưu ảnh RAW (nếu được hỗ trợ), có thể không hoạt động trên một số thiết bị (ứng dụng sẽ khởi động lại)</string>
     <string name="preference_about">Giới thiệu</string>
     <string name="preference_about_summary">Thông tin ứng dụng và gỡ lỗi</string>
     <string name="preference_reset">Khôi phục cài đặt</string>
-    <string name="preference_reset_summary">Khôi phục cài đặt Open Camera về mặc định ban đầu</string>
-    <string name="preference_reset_question">Bạn có chắc muốn khôi phục cài đặt Open Camera về mặc định ban đầu không?</string>
+    <string name="preference_reset_summary">Khôi phục cài đặt OW Camera 2 for Pebble về mặc định ban đầu</string>
+    <string name="preference_reset_question">Bạn có chắc muốn khôi phục cài đặt OW Camera 2 for Pebble về mặc định ban đầu không?</string>
 
     <string name="about_available">Khả dụng</string>
     <string name="about_not_available">Không khả dụng</string>
@@ -712,7 +712,7 @@
     <string name="preference_screen_settings_manager">Quản lý cài đặt</string>
 
     <string name="preference_save_settings">Sao lưu thiết lập</string>
-    <string name="preference_save_settings_summary">Lưu tất cả thiết lập của Open Camera vào một tệp</string>
+    <string name="preference_save_settings_summary">Lưu tất cả thiết lập của OW Camera 2 for Pebble vào một tệp</string>
     <string name="preference_save_settings_filename">Tên tệp thiết lập</string>
 
     <string name="preference_restore_settings">Khôi phục thiết lập</string>

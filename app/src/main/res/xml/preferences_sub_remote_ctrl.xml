@@ -25,8 +25,8 @@
         >
 
         <intent
-            android:targetPackage="net.sourceforge.opencamera"
-            android:targetClass="net.sourceforge.opencamera.remotecontrol.DeviceScanner"
+            android:targetPackage="com.github.jamsinclair.owcamera2"
+            android:targetClass="com.github.jamsinclair.owcamera2.remotecontrol.DeviceScanner"
             />
 
     </PreferenceScreen>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Open Camera</string> <!-- shouldn't be translated -->
+    <string name="app_name">OW Camera 2 for Pebble</string> <!-- shouldn't be translated -->
     <string name="action_settings">Ρυθμίσεις</string>
     <string name="action_popup">Ρυθμίσεις Παραθύρου</string>
     <string name="intro_ok">OK (Καμμία εμφάνιση αυτού του μυνήματος ξανά)</string>
@@ -117,7 +117,7 @@
     <string name="preference_save_video_prefix_summary">Πρόθεμα για την αποθήκευση αρχείων βίντεο</string>
     <string name="preference_save_zulu_time">Μορφή ώρας για το όνομα του αρχείου</string>
     <string name="preference_show_when_locked">εμφάνιση της κάμερας όταν κλειδώθηκε</string>
-    <string name="preference_show_when_locked_summary">Αν είναι αυτή η ρύθμιση ενεργή, το Open Camera θα εμφανίζετε πάνω από κάθε οθόνη κλειδώματος (μπορείτε ακόμα να ξεκλειδώσετε για να αποκτήσετε πρόσβαση στις Ρυθμίσεις κ.λ.π.)</string>
+    <string name="preference_show_when_locked_summary">Αν είναι αυτή η ρύθμιση ενεργή, το OW Camera 2 for Pebble θα εμφανίζετε πάνω από κάθε οθόνη κλειδώματος (μπορείτε ακόμα να ξεκλειδώσετε για να αποκτήσετε πρόσβαση στις Ρυθμίσεις κ.λ.π.)</string>
     <string name="preference_startup_focus">Αυτόματη εστίαση κατά την εκκίνηση</string>
     <string name="preference_startup_focus_summary">Με αυτή την ρύθμιση η αυτόματη εστίαση, θα ενεργοποιηθεί όταν ανοίξετε την Κάμερα. Αν έχετε πρόβλημα με το flash κατά την εκκίνηση, απενεργοποιήστε αυτή την επιλογή</string>
     <string name="preference_lock_video">Κλείδωμα της οθόνης κατά την εγγραφή βίντεο</string>
@@ -220,14 +220,14 @@
     
     <string name="preference_category_online">Διάφορα</string>
     <string name="preference_online_help">Διαδικτυακή Βοήθεια</string>
-    <string name="preference_online_help_summary">Ανοιγμα της Open Camera ιστοσελίδας στο πρόγραμμα περιηγησής σας</string>
+    <string name="preference_online_help_summary">Ανοιγμα της OW Camera 2 for Pebble ιστοσελίδας στο πρόγραμμα περιηγησής σας</string>
     <string name="preference_use_camera2">Χρήση τού Camera2 API</string>
     <string name="preference_use_camera2_summary">Ενεργοποίηση του Camera2 API - προσφέρει επιπλέον χαρακτηριστικά, αλλά ενδέχεται να μην λειτουργούν σωστά σε όλες τις συσκευές (θα προκαλέσει μια επανεκκίνηση)</string>
     <string name="preference_about">Σχετικά με</string>
     <string name="preference_about_summary">Εφαρμογή και πληροφορίες εντοπισμού σφαλμάτων</string>
     <string name="preference_reset">Ρυθμίσεις επαναφοράς</string>
-    <string name="preference_reset_summary">Επαναφορά όλων των Open Camera ρυθμίσεων στις προεπιλογές</string>
-    <string name="preference_reset_question">Είστε σίγουρος οτι θέλετε να γίνει, επαναφορά όλων των Open Camera ρυθμίσεων στις προεπιλογές;</string>
+    <string name="preference_reset_summary">Επαναφορά όλων των OW Camera 2 for Pebble ρυθμίσεων στις προεπιλογές</string>
+    <string name="preference_reset_question">Είστε σίγουρος οτι θέλετε να γίνει, επαναφορά όλων των OW Camera 2 for Pebble ρυθμίσεων στις προεπιλογές;</string>
 
     <string name="about_available">Διαθέσιμο</string>
     <string name="about_not_available">Μη διαθέσιμο</string>

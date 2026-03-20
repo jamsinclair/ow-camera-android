@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Open Camera</string> <!-- shouldn't be translated -->
+    <string name="app_name">OW Camera 2 for Pebble</string> <!-- shouldn't be translated -->
     <string name="action_settings">Einstellungen</string>
     <string name="action_popup">Popup-Einstellungen</string>
     <string name="intro_ok">OK (Diese Nachricht wird nicht wieder angezeigt.)</string>
@@ -118,9 +118,9 @@
     <string name="preference_save_video_prefix_summary">Den Präfix für die Dateinamen der Videos einstellen</string>
     <string name="preference_save_zulu_time">Zeitformat für den Dateinamen</string>
     <string name="preference_show_when_locked">Kamera trotz Sperre anzeigen</string>
-    <string name="preference_show_when_locked_summary">Wenn aktiviert, wird Open Camera über dem Sperrbildschirm stehen (das Entsperren ist jedoch für den Zugriff auf Einstellungen, Galerie usw. nötig)</string>
+    <string name="preference_show_when_locked_summary">Wenn aktiviert, wird OW Camera 2 for Pebble über dem Sperrbildschirm stehen (das Entsperren ist jedoch für den Zugriff auf Einstellungen, Galerie usw. nötig)</string>
     <string name="preference_startup_focus">Verwende Auto-Fokus bei Start der App</string>
-    <string name="preference_startup_focus_summary">Beim Start von Open Camera automatisch fokussieren. Deaktiviere diese Option bei einem Problem mit dem Blitz.</string>
+    <string name="preference_startup_focus_summary">Beim Start von OW Camera 2 for Pebble automatisch fokussieren. Deaktiviere diese Option bei einem Problem mit dem Blitz.</string>
     <string name="preference_lock_video">Bildschirm bei Videoaufnahme sperren</string>
     <string name="preference_lock_video_summary">Wenn aktiviert, wird bei Videoaufnahmen die Oberfläche gesperrt, um versehentliches Stoppen zu verhindern. Zum Entsperren einfach wischen.</string>
     <string name="preference_rotate_preview">Vorschau drehen</string>
@@ -222,14 +222,14 @@
     
     <string name="preference_category_online">Verschiedenes</string>
     <string name="preference_online_help">Online-Hilfe</string>
-    <string name="preference_online_help_summary">Öffne die Open Camera Website in deinem Browser</string>
+    <string name="preference_online_help_summary">Öffne die OW Camera 2 for Pebble Website in deinem Browser</string>
     <string name="preference_use_camera2">Camera2-API verwenden</string>
     <string name="preference_use_camera2_summary">Aktiviert die Camera2-API mit Zusatzfunktionen (experimentell, Neustart erforderlich)</string>
     <string name="preference_about">Über</string>
     <string name="preference_about_summary">Anwendungs- und Debug-Informationen</string>
     <string name="preference_reset">Einstellungen zurücksetzen</string>
-    <string name="preference_reset_summary">Standard-Einstellungen von Open Camera wiederherstellen</string>
-    <string name="preference_reset_question">Sind Sie sich sicher, alle Einstellungen von Open Camera auf die Standardwerte zurückzusetzen?</string>
+    <string name="preference_reset_summary">Standard-Einstellungen von OW Camera 2 for Pebble wiederherstellen</string>
+    <string name="preference_reset_question">Sind Sie sich sicher, alle Einstellungen von OW Camera 2 for Pebble auf die Standardwerte zurückzusetzen?</string>
 
     <string name="about_available">verfügbar</string>
     <string name="about_not_available">nicht verfügbar</string>
@@ -711,7 +711,7 @@
     <string name="preference_screen_settings_manager">Einstellungsmanager</string>
 
     <string name="preference_save_settings">Sichere Einstellungen</string>
-    <string name="preference_save_settings_summary">Sichere alle Einstellungen von Open Camera in eine Datei</string>
+    <string name="preference_save_settings_summary">Sichere alle Einstellungen von OW Camera 2 for Pebble in eine Datei</string>
     <string name="preference_save_settings_filename">Name der Einstellungsdatei</string>
 
     <string name="preference_restore_settings">Einstellungen wiederherstellen</string>
@@ -784,7 +784,7 @@
     <string name="bluetooth_not_supported">Bluetooth wird nicht unterstützt.</string>
     <string name="unknown_device">Unbekanntes Gerät</string>
     <string name="preference_remote_disconnect_screen_dim">Blende Bildschirms ab, wenn Fernsteuerverbindung abbricht</string>
-    <string name="preference_remote_disconnect_screen_dim_summary">Tipp: Setze die Standard-Helligkeit auf minimal bevor du Open Camera startest.</string>
+    <string name="preference_remote_disconnect_screen_dim_summary">Tipp: Setze die Standard-Helligkeit auf minimal bevor du OW Camera 2 for Pebble startest.</string>
     <string name="preference_water_type">Setze Salzwasser zur Tiefenberechnung</string>
     <string name="preference_water_type_summary">Für Unterwassergehäuse, verbessert die Genauigkeit bei korrekter Auswahl der Wasserart.</string>
     <string name="remote_connected">Fernsteurung verbunden</string>

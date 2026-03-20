@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Open Camera</string>
+    <string name="app_name">OW Camera 2 for Pebble</string>
     <string name="action_settings">Configurações</string>
     <string name="action_popup">Configurações rápidas</string>
     <string name="intro_ok">OK (Essa mensagem não será mostrada novamente)</string>
@@ -108,7 +108,7 @@
     <string name="preference_save_video_prefix">Salvar prefixo de vídeo</string>
     <string name="preference_save_video_prefix_summary">O prefixo usado para salvar o nome dos arquivos de vídeo</string>
     <string name="preference_show_when_locked">Mostrar câmera quando travado</string>
-    <string name="preference_show_when_locked_summary">Se habilitado, o Open Camera ainda será exibido acima de qualquer tela de bloqueio</string>
+    <string name="preference_show_when_locked_summary">Se habilitado, o OW Camera 2 for Pebble ainda será exibido acima de qualquer tela de bloqueio</string>
     <string name="preference_lock_video">Travar tela enquanto filma</string>
     <string name="preference_lock_video_summary">Trava a tela enquanto filma para prevenir falhas acidentais na filmagem. Deslize na tela para desbloquear.</string>
     <string name="preference_rotate_preview">Rotação de visualização</string>
@@ -143,7 +143,7 @@
     <string name="preference_thumbnail_animation">Mostrar animação para captura de fotos</string>
     <string name="preference_thumbnail_animation_summary">Exibe uma animação quando uma foto é tirada</string>
     <string name="preference_keep_display_on">Manter a tela ligada</string>
-    <string name="preference_keep_display_on_summary">Se habilitada, a tela não desligará enquanto a IU do Open Camera estiver aberta</string>
+    <string name="preference_keep_display_on_summary">Se habilitada, a tela não desligará enquanto a IU do OW Camera 2 for Pebble estiver aberta</string>
     <string name="preference_max_brightness">Forçar brilho máximo</string>
     <string name="preference_max_brightness_summary">Força a exibição da tela a ser em brilho máximo, em vez de no padrão do dispositivo</string>
 	

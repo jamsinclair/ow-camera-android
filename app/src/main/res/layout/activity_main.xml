@@ -640,7 +640,7 @@
         />
 
     <!-- Pebble debug preview overlay - positioned in top right -->
-    <net.sourceforge.opencamera.PebbleDebugPreviewOverlay
+    <com.github.jamsinclair.owcamera2.PebbleDebugPreviewOverlay
         android:id="@+id/pebble_debug_overlay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

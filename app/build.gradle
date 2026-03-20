@@ -6,12 +6,12 @@ android {
     compileOptions.encoding = 'UTF-8'
 
     defaultConfig {
-        applicationId "net.sourceforge.opencamera"
+        applicationId "com.github.jamsinclair.owcamera2"
         minSdkVersion 24
         targetSdkVersion 36
         //compileSdkVersion 31 // needed to support appcompat:1.4.0 (which we need for emoji policy support, and not yet ready to target SDK 30)
 
-        testApplicationId "net.sourceforge.opencamera.test"
+        testApplicationId "com.github.jamsinclair.owcamera2.test"
         //testInstrumentationRunner "android.test.InstrumentationTestRunner"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -32,7 +32,7 @@ android {
         abortOnError false
         checkReleaseBuilds false
     }
-    namespace 'net.sourceforge.opencamera'
+    namespace 'com.github.jamsinclair.owcamera2'
     buildFeatures {
     }
     //useLibrary 'android.test.mock'
