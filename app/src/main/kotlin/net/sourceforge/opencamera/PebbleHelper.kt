@@ -1,7 +1,6 @@
 package net.sourceforge.opencamera
 
 import java.util.UUID
-import java.util.zip.Deflater
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
@@ -278,7 +277,9 @@ class PebbleHelper(private val coroutineScope: CoroutineScope, private val conte
                     if (MyDebug.LOG) {
                         Log.d(TAG, "Frame finished, processing pending frame request")
                     }
+                    // sendPreviewFrame makes its own bitmap copy, so we can recycle after the call
                     sendPreviewFrame(pending.bitmap, pending.model, pending.format, pending.ditheringAlgorithm, pending.rotationDegrees)
+                    pending.bitmap.recycle()
                 }
             }
         }
@@ -296,7 +297,11 @@ class PebbleHelper(private val coroutineScope: CoroutineScope, private val conte
         // Compress the packed pixel data
         val compressionStartTime = System.currentTimeMillis()
         val packedPixels = colorImageData.chunks[0]  // Single chunk from converter
-        val compressedChunks = pixelCompressor.compressPixelData(packedPixels)
+        // Max chunk size accounts for message packing overhead:
+        // First message: 1 (header) + 4 (timestamp) + 16 (palette) = 21 bytes overhead
+        // Continuation: 1 (header) + 4 (timestamp) = 5 bytes overhead
+        // Use worst case (21) to ensure all packed messages fit within 8192 bytes
+        val compressedChunks = pixelCompressor.compressPixelData(packedPixels, maxChunkSize = 8192 - 21)
         val compressionEndTime = System.currentTimeMillis()
 
         if (MyDebug.LOG) {

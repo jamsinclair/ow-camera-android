@@ -176,7 +176,6 @@ public class MainActivity extends AppCompatActivity implements PreferenceFragmen
     public static final String EXTRA_PEBBLE_MODEL = "pebble_model";
     public static final String EXTRA_PEBBLE_FORMAT = "pebble_format";
     public static final String EXTRA_PEBBLE_DITHERING = "pebble_dithering";
-    public static final String EXTRA_PEBBLE_INSTANCE_NUMBER = "instance_number";
     public static final String ACTION_PEBBLE_TOGGLE_CAMERA = "net.sourceforge.opencamera.ACTION_PEBBLE_TOGGLE_CAMERA";
     public static final String ACTION_PEBBLE_REQUEST_CHUNK = "net.sourceforge.opencamera.PEBBLE_REQUEST_CHUNK";
     public static final String EXTRA_CHUNK_NUMBER = "chunk_number";
@@ -443,6 +442,7 @@ public class MainActivity extends AppCompatActivity implements PreferenceFragmen
         // Controller uses its own isolated coroutine scope to prevent contention with Pebble messaging
         PebbleDebugPreviewOverlay pebbleDebugOverlay = findViewById(R.id.pebble_debug_overlay);
         if (pebbleDebugOverlay != null && MyDebug.PEBBLE_DEBUG_PREVIEW) {
+            pebbleDebugOverlay.setVisibility(View.VISIBLE);
             debugPreviewController = new DebugPreviewController(LifecycleOwnerKt.getLifecycleScope(this), new PebbleImageConverter(this));
             debugPreviewController.setDebugOverlay(pebbleDebugOverlay);
             // Provide preview bitmap source for continuous debug updates
@@ -1882,6 +1882,10 @@ public class MainActivity extends AppCompatActivity implements PreferenceFragmen
         pebble.onPause(this);
         if (debugPreviewController != null) {
             debugPreviewController.onPause();
+        }
+        if (pebbleBitmapTimeoutHandler != null && pebbleBitmapTimeoutRunnable != null) {
+            pebbleBitmapTimeoutHandler.removeCallbacks(pebbleBitmapTimeoutRunnable);
+            pebbleBitmapTimeoutRunnable = null;
         }
         if (pebbleMessageReceiver != null) {
             unregisterReceiver(pebbleMessageReceiver);

@@ -648,7 +648,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginTop="120dp"
         android:layout_marginRight="20dp"
-        android:visibility="visible"
+        android:visibility="gone"
         />
 
 </RelativeLayout>

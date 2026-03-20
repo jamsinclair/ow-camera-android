@@ -44,13 +44,15 @@ class DebugPreviewController(
     }
 
     fun onResume() {
+        if (!MyDebug.PEBBLE_DEBUG_PREVIEW) {
+            return
+        }
+
         if (debugOverlay == null || previewProvider == null) {
             return
         }
 
-        if (MyDebug.PEBBLE_DEBUG_PREVIEW) {
-            Log.d(TAG, "Starting debug preview updates")
-        }
+        Log.d(TAG, "Starting debug preview updates")
 
         updateHandler = Handler(Looper.getMainLooper())
         updateDebugPreview()

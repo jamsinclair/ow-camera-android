@@ -1,19 +1,10 @@
 package net.sourceforge.opencamera
 
-import android.content.ContentValues
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.Matrix
-import android.os.Build
-import android.os.Environment
-import android.provider.MediaStore
 import android.util.Log
-import java.io.File
-import java.io.FileOutputStream
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
 
 enum class PebbleModel(val width: Int, val height: Int) {
     APLITE(144, 168),
@@ -208,7 +199,7 @@ class PebbleImageConverter(private val context: Context? = null) {
 
     /**
      * Rotates bitmap by specified degrees, or returns source unchanged if degrees == 0.
-     * Negative rotation values are applied as-is (convention: negative to counter-rotate display rotation).
+     * The input degrees are negated internally to counter-rotate display rotation.
      */
     private fun rotateBitmap(source: Bitmap, degrees: Int): Bitmap {
         if (degrees == 0) {
@@ -425,125 +416,6 @@ class PebbleImageConverter(private val context: Context? = null) {
             .take(paletteSize)
             .map { it.index }
             .toIntArray()
-    }
-
-    /**
-     * Median cut algorithm - recursively divides color space to find representative colors
-     */
-    private fun medianCut(colors: List<Int>, targetBoxCount: Int): List<ColorBox> {
-        val boxes = mutableListOf(ColorBox(colors.toMutableList()))
-
-        while (boxes.size < targetBoxCount && boxes.any { it.colors.size > 1 }) {
-            // Find box with largest range
-            val boxToSplit = boxes.withIndex()
-                .maxByOrNull { (_, box) -> box.largestRange() }
-                ?.value
-                ?: break
-
-            val (box1, box2) = boxToSplit.splitAtMedian()
-            boxes.remove(boxToSplit)
-            boxes.add(box1)
-            boxes.add(box2)
-        }
-
-        return boxes
-    }
-
-    /**
-     * Represents a box of colors in RGB space
-     */
-    private data class ColorBox(val colors: MutableList<Int>) {
-        fun largestRange(): Int {
-            if (colors.isEmpty()) return 0
-
-            var minR = 255
-            var maxR = 0
-            var minG = 255
-            var maxG = 0
-            var minB = 255
-            var maxB = 0
-
-            for (color in colors) {
-                val r = (color shr 16) and 0xFF
-                val g = (color shr 8) and 0xFF
-                val b = color and 0xFF
-
-                minR = minOf(minR, r)
-                maxR = maxOf(maxR, r)
-                minG = minOf(minG, g)
-                maxG = maxOf(maxG, g)
-                minB = minOf(minB, b)
-                maxB = maxOf(maxB, b)
-            }
-
-            val rangeR = maxR - minR
-            val rangeG = maxG - minG
-            val rangeB = maxB - minB
-
-            return maxOf(rangeR, rangeG, rangeB)
-        }
-
-        fun splitAtMedian(): Pair<ColorBox, ColorBox> {
-            if (colors.isEmpty()) return Pair(ColorBox(mutableListOf()), ColorBox(mutableListOf()))
-
-            var minR = 255
-            var maxR = 0
-            var minG = 255
-            var maxG = 0
-            var minB = 255
-            var maxB = 0
-
-            for (color in colors) {
-                val r = (color shr 16) and 0xFF
-                val g = (color shr 8) and 0xFF
-                val b = color and 0xFF
-
-                minR = minOf(minR, r)
-                maxR = maxOf(maxR, r)
-                minG = minOf(minG, g)
-                maxG = maxOf(maxG, g)
-                minB = minOf(minB, b)
-                maxB = maxOf(maxB, b)
-            }
-
-            val rangeR = maxR - minR
-            val rangeG = maxG - minG
-            val rangeB = maxB - minB
-
-            // Sort by axis with largest range
-            when (maxOf(rangeR, rangeG, rangeB)) {
-                rangeR -> colors.sortBy { (it shr 16) and 0xFF }
-                rangeG -> colors.sortBy { (it shr 8) and 0xFF }
-                else -> colors.sortBy { it and 0xFF }
-            }
-
-            val mid = colors.size / 2
-            val box1Colors = colors.subList(0, mid).toMutableList()
-            val box2Colors = colors.subList(mid, colors.size).toMutableList()
-
-            return Pair(ColorBox(box1Colors), ColorBox(box2Colors))
-        }
-
-        fun averageColor(): Int {
-            if (colors.isEmpty()) return 0
-
-            var sumR = 0
-            var sumG = 0
-            var sumB = 0
-
-            for (color in colors) {
-                sumR += (color shr 16) and 0xFF
-                sumG += (color shr 8) and 0xFF
-                sumB += color and 0xFF
-            }
-
-            val count = colors.size
-            val avgR = sumR / count
-            val avgG = sumG / count
-            val avgB = sumB / count
-
-            return (avgR shl 16) or (avgG shl 8) or avgB
-        }
     }
 
     /**

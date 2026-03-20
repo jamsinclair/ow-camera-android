@@ -79,16 +79,24 @@ class PebblePixelCompressor {
 
     /**
      * Compresses data using raw deflate format (without zlib headers).
+     * Output buffer sized to handle worst case where compressed data is larger than input.
      */
     private fun deflateCompress(data: ByteArray): ByteArray {
         val deflater = Deflater(Deflater.BEST_COMPRESSION, true)
         deflater.setInput(data)
         deflater.finish()
 
-        val output = ByteArray(data.size + 100)
-        val compressedSize = deflater.deflate(output)
+        // Deflate worst case: input size + 0.1% + 12 bytes overhead
+        val outputSize = data.size + (data.size / 1000) + 100
+        val output = ByteArray(outputSize)
+        var totalCompressed = 0
+
+        while (!deflater.finished()) {
+            val count = deflater.deflate(output, totalCompressed, output.size - totalCompressed)
+            totalCompressed += count
+        }
         deflater.end()
 
-        return output.copyOfRange(0, compressedSize)
+        return output.copyOfRange(0, totalCompressed)
     }
 }

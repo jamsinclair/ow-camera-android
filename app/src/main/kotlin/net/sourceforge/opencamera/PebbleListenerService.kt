@@ -85,9 +85,13 @@ class PebbleListenerService : BasePebbleListenerService() {
     }
 
     private fun isTimestampFresh(bytes: ByteArray): Boolean {
-        Log.i(TAG, "isTimestampFresh called with ${bytes.size} bytes")
+        if (MyDebug.LOG) {
+            Log.d(TAG, "isTimestampFresh called with ${bytes.size} bytes")
+        }
         if (bytes.size < 5) {
-            Log.w(TAG, "Timestamp validation failed: insufficient bytes (need 5, got ${bytes.size})")
+            if (MyDebug.LOG) {
+                Log.w(TAG, "Timestamp validation failed: insufficient bytes (need 5, got ${bytes.size})")
+            }
             return false
         }
         val ts = ((bytes[1].toLong() and 0xFF) or
@@ -97,7 +101,9 @@ class PebbleListenerService : BasePebbleListenerService() {
         val now = System.currentTimeMillis() / 1000L
         val timeDiff = Math.abs(now - ts)
         val isFresh = timeDiff <= TIMESTAMP_STALENESS_THRESHOLD_SECONDS
-        Log.i(TAG, "Timestamp validation: msg_ts=$ts, now=$now, diff=${timeDiff}s, fresh=$isFresh, threshold=${TIMESTAMP_STALENESS_THRESHOLD_SECONDS}s")
+        if (MyDebug.LOG) {
+            Log.d(TAG, "Timestamp validation: msg_ts=$ts, now=$now, diff=${timeDiff}s, fresh=$isFresh, threshold=${TIMESTAMP_STALENESS_THRESHOLD_SECONDS}s")
+        }
         return isFresh
     }
 
@@ -136,7 +142,7 @@ class PebbleListenerService : BasePebbleListenerService() {
         val captureItem = data[KEY_CAPTURE.toUInt()]
         if (captureItem != null) {
             try {
-                // Parse capture message: 5 bytes
+                // Parse capture message: 8 bytes
                 // Byte 0: Header byte (reserved)
                 // Bytes 1-4: Timestamp in seconds (32-bit little endian)
                 // Bytes 5-7: Timer duration in seconds (24-bit little endian)
