@@ -1388,7 +1388,16 @@ public class MainActivity extends AppCompatActivity implements PreferenceFragmen
         // also if we change this method name or where it's located, remember to update the mention in
         // opencamera_source.txt
         //return "https://opencamera.sourceforge.io/" + append;
-        return "https://opencamera.org.uk/" + append;
+        // if append string is equal to '#licence' then return github.com
+        if( append.equals("#licence") ) {
+            return "https://raw.githubusercontent.com/jamsinclair/ow-camera-android/refs/heads/development/gpl-3.0.txt";
+        }
+
+        if ( append.equals("privacy_oc.html") ) {
+             return "https://jamie.tokyo/ow-camera-remote/privacy/";
+        }
+
+        return "https://jamie.tokyo/ow-camera-remote/";
     }
 
     void launchOnlineHelp() {
