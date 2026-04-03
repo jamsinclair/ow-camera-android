@@ -68,7 +68,7 @@ jobs:
             --ks /tmp/release.jks \
             --ks-pass "pass:${{ secrets.KEYSTORE_PASSWORD }}" \
             --ks-key-alias "${{ secrets.KEY_ALIAS }}" \
-            --key-pass "pass:${{ secrets.KEY_PASSWORD }}" \
+            --key-pass "pass:${{ secrets.KEYSTORE_PASSWORD }}" \
             --out /tmp/owcamera-${{ steps.tag.outputs.TAG }}.apk \
             /tmp/owcamera-${{ steps.tag.outputs.TAG }}-aligned.apk
 
