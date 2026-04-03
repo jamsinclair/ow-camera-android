@@ -75,6 +75,7 @@ jobs:
       - name: Upload to GitHub Releases
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: ${{ steps.tag.outputs.TAG }}
           generate_release_notes: true
           files: /tmp/owcamera-${{ steps.tag.outputs.TAG }}.apk
 
