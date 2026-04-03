@@ -1,0 +1,13 @@
+Remote shooting from your Pebble watch. See a live preview of your phone's camera and trigger the shutter from your wrist without touching your phone. Perfect for group photos, selfies, and stable shots!
+
+Take photos and videos with complete camera control from the phone - adjust exposure, ISO, white balance, focus modes, and more.
+
+Re-released to support the last Pebble smartwatches and added support for camera preview, Supports newer Pebble 2 Duo and Pebble Time 2
+
+Features:
+- Pebble smartwatch remote shutter and camera preview
+- Full manual controls from the phone (ISO, exposure, white balance, focus)
+- Grid overlays and level indicators
+- And many other camera features and customizations
+
+Forked from Open Camera with added Pebble functionality.
