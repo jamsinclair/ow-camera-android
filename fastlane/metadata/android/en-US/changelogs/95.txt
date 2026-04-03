@@ -1,0 +1,1 @@
+Initial release of OW Camera 2 for Pebble. Adds Pebble smartwatch remote shutter control, live camera preview streaming to the watch, capture timer support, and front/rear camera toggle from the watch.
