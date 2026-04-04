@@ -57,11 +57,6 @@ jobs:
             echo "TAG=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
           fi
 
-      - name: Zipalign APK
-        run: |
-          UNSIGNED_APK=app/build/outputs/apk/release/app-release-unsigned.apk
-          $BUILD_TOOLS/zipalign -v -p 4 "$UNSIGNED_APK" /tmp/owcamera-${{ steps.tag.outputs.TAG }}-aligned.apk
-
       - name: Sign APK
         run: |
           $BUILD_TOOLS/apksigner sign \
@@ -70,7 +65,7 @@ jobs:
             --ks-key-alias "${{ secrets.KEY_ALIAS }}" \
             --key-pass "pass:${{ secrets.KEYSTORE_PASSWORD }}" \
             --out /tmp/owcamera-${{ steps.tag.outputs.TAG }}.apk \
-            /tmp/owcamera-${{ steps.tag.outputs.TAG }}-aligned.apk
+            app/build/outputs/apk/release/app-release-unsigned.apk
 
       - name: Upload to GitHub Releases
         uses: softprops/action-gh-release@v2
