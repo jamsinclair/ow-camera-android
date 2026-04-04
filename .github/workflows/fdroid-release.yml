@@ -60,6 +60,7 @@ jobs:
       - name: Sign APK
         run: |
           $BUILD_TOOLS/apksigner sign \
+            --alignment-preserved \
             --ks /tmp/release.jks \
             --ks-pass "pass:${{ secrets.KEYSTORE_PASSWORD }}" \
             --ks-key-alias "${{ secrets.KEY_ALIAS }}" \
