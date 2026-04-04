@@ -9,9 +9,9 @@ There are three branches I am maintaining:
 - [development](https://github.com/jamsinclair/ow-camera-android/tree/development): Adds support for Pebble remote shutter control without modifying the original namespace.
 - [release](https://github.com/jamsinclair/ow-camera-android/tree/release): Renames the namespace to `com.github.jamsinclair.owcamera2` and should be used for any builds intended for release.
 
-## App Builds and Verfication
+## App Builds and Verification
 
-[<img src="docs/badge_github.png" alt="Get it on GitHub" height="80">](https://github.com/jamsinclair/ow-camera-android/releases/latest)
+[<img src="https://github.com/machiav3lli/oandbackupx/blob/034b226cea5c1b30eb4f6a6f313e4dadcbb0ece4/badge_github.png" alt="Get it on GitHub" height="80">](https://github.com/jamsinclair/ow-camera-android/releases/latest)
 
 Verification info:
 - Package ID: com.github.jamsinclair.owcamera2
