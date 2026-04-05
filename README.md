@@ -1,5 +1,7 @@
 # OW Camera 2 for Pebble
 
+👉 [Pebble Watch App Project](https://github.com/jamsinclair/ow-camera-remote)
+
 OW Camera 2 for Pebble is a fork of the Open Camera app, which specfically adds support for remote shutter control via Pebble smartwatches. This the successor to my previous OW Camera for Pebble app, which is no longer available on the Google Play Store. It is using the latest Pebblekit SDK that is still a work-in-progress, [pebble-dev/PebbleKitAndroid2](https://github.com/pebble-dev/PebbleKitAndroid2).
 
 The rest of the app is mostly unchanged from Open Camera, with additional background logic for sending preview images and some minor tweaks to the user interface and strings.
@@ -11,7 +13,9 @@ There are three branches I am maintaining:
 
 ## Installation
 
-[<img src="https://github.com/machiav3lli/oandbackupx/blob/034b226cea5c1b30eb4f6a6f313e4dadcbb0ece4/badge_github.png" alt="Get it on GitHub" height="80">](https://github.com/jamsinclair/ow-camera-android/releases/latest) [<img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" alt="Get it on Google Playstore" height="80">](https://play.google.com/store/apps/details?id=com.github.jamsinclair.owcamera2)
+[<img src="https://github.com/machiav3lli/oandbackupx/blob/034b226cea5c1b30eb4f6a6f313e4dadcbb0ece4/badge_github.png" alt="Get it on GitHub" height="80">](https://github.com/jamsinclair/ow-camera-android/releases/latest)
+[<img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" alt="Get it on Google Playstore" height="80">](https://play.google.com/store/apps/details?id=com.github.jamsinclair.owcamera2)
+[<img src="https://github.com/ImranR98/Obtainium/blob/49b42f6796d1bccc5bc948756b7cac9bb8a6c47b/assets/graphics/badge_obtainium.png" alt="Get it on Obtainium" height="80">](https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/jamsinclair/ow-camera-android)
 
 Verification for non-playstore builds:
 - Package ID: com.github.jamsinclair.owcamera2
