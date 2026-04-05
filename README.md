@@ -15,7 +15,7 @@ There are three branches I am maintaining:
 
 [<img src="https://github.com/machiav3lli/oandbackupx/blob/034b226cea5c1b30eb4f6a6f313e4dadcbb0ece4/badge_github.png" alt="Get it on GitHub" height="80">](https://github.com/jamsinclair/ow-camera-android/releases/latest)
 [<img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" alt="Get it on Google Playstore" height="80">](https://play.google.com/store/apps/details?id=com.github.jamsinclair.owcamera2)
-[<img src="https://github.com/ImranR98/Obtainium/blob/49b42f6796d1bccc5bc948756b7cac9bb8a6c47b/assets/graphics/badge_obtainium.png" alt="Get it on Obtainium" height="80">](https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/jamsinclair/ow-camera-android)
+[<img src="./docs/badge_obtainium.png" alt="Get it on Obtainium" height="80">](https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/jamsinclair/ow-camera-android)
 
 Verification for non-playstore builds:
 - Package ID: com.github.jamsinclair.owcamera2
